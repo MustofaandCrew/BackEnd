@@ -1,8 +1,9 @@
 class AuthenticationController {
-  constructor({ userModel, bcrypt, jwt }) {
+  constructor({ userModel, bcrypt, jwt, validator }) {
     this.userModel = userModel;
     this.bcrypt = bcrypt;
     this.jwt = jwt;
+    this.validator = validator;
   }
 
   accessControl = {
@@ -76,7 +77,14 @@ class AuthenticationController {
 
   handleRegister = async (req, res) => {
     try {
-      const { email, password } = req.body;
+      const { nama, email, password } = req.body;
+      const isEmailValid = this.validator.isEmail(email);
+      if (!isEmailValid) {
+        return res.status(400).json({
+          message: "Invalid email",
+        });
+      }
+
       const user = await this.userModel.findOne({
         where: { email },
       });
@@ -89,6 +97,7 @@ class AuthenticationController {
 
       const hashedPassword = await this.bcrypt.hash(password, 10);
       const newUser = await this.userModel.create({
+        nama,
         email,
         password: hashedPassword,
       });
@@ -99,16 +108,6 @@ class AuthenticationController {
       });
     } catch (error) {
       return res.status(401).json({
-        message: error.message,
-      });
-    }
-  };
-
-  handleGetUser = async (req, res) => {
-    try {
-      res.send(req.user);
-    } catch (error) {
-      res.status(401).json({
         message: error.message,
       });
     }
