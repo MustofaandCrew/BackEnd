@@ -2,6 +2,7 @@ const { Op } = require("sequelize");
 const { User } = require("../models");
 const validator = require("validator").default;
 const bcrypt = require("bcryptjs");
+const cloudinary = require("../../middleware/cloudinary");
 
 const handleGetUser = async (req, res) => {
   try {
@@ -59,16 +60,17 @@ const handleUpdate = async (req, res) => {
       });
     }
 
-    if (!req.file) {
+    if (req.file) {
+      const data = await uploadImage(req, res);
       await user.update(
         {
+          nama,
           email,
           password: hashedPassword,
-          nama,
           kota,
           alamat,
           noHp,
-          image: req.user.image,
+          image: data.url,
         },
         {
           where: {
@@ -79,13 +81,13 @@ const handleUpdate = async (req, res) => {
     } else {
       await user.update(
         {
+          nama,
           email,
           password: hashedPassword,
-          nama,
           kota,
           alamat,
           noHp,
-          image: req.file.filename,
+          image: req.user.image,
         },
         {
           where: {
@@ -103,6 +105,19 @@ const handleUpdate = async (req, res) => {
       message: error.message,
     });
   }
+};
+
+const uploadImage = (req, res) => {
+  const fileBase64 = req.file.buffer.toString("base64");
+  const file = `data:${req.file.mimetype};base64,${fileBase64}`;
+
+  const data = cloudinary.uploader.upload(file, (err, result) => {
+    if (err) {
+      return false;
+    }
+    return result.url;
+  });
+  return data;
 };
 
 module.exports = { handleGetUser, handleUpdate };
