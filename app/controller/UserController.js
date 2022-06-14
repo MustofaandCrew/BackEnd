@@ -7,9 +7,14 @@ class UserController {
     this.bcrypt = bcrypt;
   }
 
-  handleGetUser = async (req, res) => {
+  handleDetailProfile = async (req, res) => {
     try {
-      res.send(req.user);
+      const user = await this.userModel.findOne({
+        where: {
+          email: req.user.email,
+        },
+      });
+      res.send(user);
     } catch (error) {
       res.status(401).json({
         message: error.message,
