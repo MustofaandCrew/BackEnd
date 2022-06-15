@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const category  = require("./controller/category");
+const {categoryController} = require("./controller");
 
 router.get("/", (req, res) => {
   res.send({
@@ -9,10 +9,10 @@ router.get("/", (req, res) => {
 });
 
 //Kategori
-router.get('/categories', category.getListCategories);
-router.get('/categories/:id', category.getListCategoriesById);
-router.post('/categories/add', category.createCategory);
-router.put('/categories/edit/:id', category.updateCategory);
-router.delete('/categories/delete/:id', category.deleteCategory);
+router.get('/categories', categoryController.getListCategories);
+router.get('/categories/:id', categoryController.getListCategoriesById);
+router.post('/categories/create', categoryController.createCategory);
+router.put('/categories/update/:id', categoryController.updateCategory);
+router.delete('/categories/delete/:id', categoryController.deleteCategory);
 
 module.exports = router;
