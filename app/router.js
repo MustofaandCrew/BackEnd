@@ -1,7 +1,7 @@
 const express = require("express");
 const uploadOnMemory = require("../middleware/multer");
 const router = express.Router();
-const { authenticationController, userController } = require("./controller");
+const { authenticationController, userController, categoryController } = require("./controller");
 
 router.get("/", (req, res) => {
   res.send({
@@ -15,10 +15,10 @@ router.get("/profile", authenticationController.authorize, userController.handle
 router.put("/profile", authenticationController.authorize, uploadOnMemory.single("picture"), userController.handleUpdate);
 
 //Kategori
-router.get("/categories", category.getListCategories);
-router.get("/categories/:id", category.getListCategoriesById);
-router.post("/categories/add", category.createCategory);
-router.put("/categories/edit/:id", category.updateCategory);
-router.delete("/categories/delete/:id", category.deleteCategory);
+router.get("/categories", categoryController.getListCategories);
+router.get("/categories/:id", categoryController.getListCategoriesById);
+router.post("/categories/create", categoryController.createCategory);
+router.put("/categories/update/:id", categoryController.updateCategory);
+router.delete("/categories/delete/:id", categoryController.deleteCategory);
 
 module.exports = router;
