@@ -1,7 +1,7 @@
 const express = require("express");
 const uploadOnMemory = require("../middleware/multer");
 const router = express.Router();
-const { authenticationController, userController, categoryController } = require("./controller");
+const { authenticationController, userController, categoryController, productController } = require("./controller");
 
 router.get("/", (req, res) => {
   res.send({
@@ -21,4 +21,6 @@ router.post("/categories/create", categoryController.createCategory);
 router.put("/categories/update/:id", categoryController.updateCategory);
 router.delete("/categories/delete/:id", categoryController.deleteCategory);
 
+//Product
+router.post("/product/create", authenticationController.authorize, productController.createProduct);
 module.exports = router;
