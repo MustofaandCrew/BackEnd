@@ -10,17 +10,40 @@ const createProduct = async (req, res) => {
         message: "Category not found",
       });
     }
+
     const product = await Product.create({
       userId: id,
       nama,
       harga,
       deskripsi,
     });
+
     await product.addCategory(category);
+
+    const data = await uploadMultipleFiles(req, res);
+    const uploadedFile = await Promise.all(data);
+    const urls = uploadedFile.map((file) => {
+      return file.url;
+    });
+    urls.forEach((url) => {
+      ProductImage.create({
+        productId: product.id,
+        image: url,
+      });
+    });
+
     const result = await Product.findOne({
       where: { id: product.id },
-      include: Category,
+      include: [
+        {
+          model: Category,
+        },
+        {
+          model: ProductImage,
+        },
+      ],
     });
+
     return res.status(201).json({
       message: "Product created",
       data: result,
