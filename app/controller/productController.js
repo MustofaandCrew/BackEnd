@@ -32,4 +32,20 @@ const createProduct = async (req, res) => {
   }
 };
 
+const uploadMultipleFiles = (req, res) => {
+  const uploadedFile = req.files.product_images.map((file) => {
+    const fileBase64 = file.buffer.toString("base64");
+    const fileUpload = `data:${file.mimetype};base64,${fileBase64}`;
+
+    return cloudinary.uploader.upload(fileUpload, (err, result) => {
+      if (err) {
+        return false;
+      }
+      return result.url;
+    });
+  });
+
+  return uploadedFile;
+};
+
 module.exports = { createProduct };
