@@ -2,6 +2,7 @@ const express = require("express");
 const uploadOnMemory = require("../middleware/multer");
 const router = express.Router();
 const { authenticationController, userController, categoryController, productController } = require("./controller");
+const multipleUpload = uploadOnMemory.fields([{ name: "product_images", maxCount: 4 }]);
 
 router.get("/", (req, res) => {
   res.send({
@@ -22,5 +23,6 @@ router.put("/categories/update/:id", categoryController.updateCategory);
 router.delete("/categories/delete/:id", categoryController.deleteCategory);
 
 //Product
-router.post("/product/create", authenticationController.authorize, productController.createProduct);
+router.post("/product/create", authenticationController.authorize, multipleUpload, productController.createProduct);
+router.get("/product", authenticationController.authorize, productController.getListProduct);
 module.exports = router;
