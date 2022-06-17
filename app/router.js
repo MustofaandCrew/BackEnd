@@ -18,9 +18,9 @@ router.put("/profile", authenticationController.authorize, uploadOnMemory.single
 //Kategori
 router.get("/categories", categoryController.getListCategories);
 router.get("/categories/:id", categoryController.getListCategoriesById);
-router.post("/categories/create", categoryController.createCategory);
-router.put("/categories/update/:id", categoryController.updateCategory);
-router.delete("/categories/delete/:id", categoryController.deleteCategory);
+router.post("/categories/", categoryController.createCategory);
+router.put("/categories/:id", categoryController.updateCategory);
+router.delete("/categories/:id", categoryController.deleteCategory);
 
 //Product
 router.post("/product/create", authenticationController.authorize, multipleUpload, productController.createProduct);

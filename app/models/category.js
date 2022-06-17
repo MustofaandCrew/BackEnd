@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Category.belongsToMany(models.Product, {
         through: "ProductCategory",
         foreignKey: "categoryId",
+        onDelete: "CASCADE",
       });
     }
   }

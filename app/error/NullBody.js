@@ -2,7 +2,7 @@ class NullBody {
   details() {
     return {
       code: "002",
-      message: "Body tidak ada isinya",
+      message: "Isi body tidak boleh kosong",
     };
   }
 }

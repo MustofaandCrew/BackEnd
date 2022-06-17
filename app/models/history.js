@@ -11,15 +11,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       History.belongsTo(models.Product, {
         foreignKey: "productId",
+        onDelete: "CASCADE",
       });
       History.belongsTo(models.User, {
         foreignKey: "userId",
+        onDelete: "CASCADE",
       });
     }
   }
   History.init(
     {
       tanggal: DataTypes.DATE,
+      harga: DataTypes.FLOAT,
     },
     {
       sequelize,

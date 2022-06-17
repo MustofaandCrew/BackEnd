@@ -1,9 +1,13 @@
 const { Category } = require("../models");
-const { IdNotFound, NullBody } = require("../error");
+const { Op } = require("sequelize");
+const { IdNotFound, NullBody, UniqueColumnAlreadyExisted } = require("../error");
 
 const getListCategories = async (req, res) => {
   try {
     const categories = await Category.findAll();
+    if (categories.length === 0) {
+      return res.status(204).end();
+    }
     return res.status(200).json({
       status: "Categories fetched successfully",
       categories,
@@ -24,11 +28,8 @@ const getListCategoriesById = async (req, res) => {
       },
     });
     if (!categories) {
-      const err = new IdNotFound(req.params.id).details();
-      return res.status(404).json({
-        code: err.code,
-        message: err.message,
-      });
+      const err = new IdNotFound(req.params.id);
+      return res.status(404).json(err.details());
     }
     return res.status(200).json({
       status: "Categories By Id fetched successfully",
@@ -44,26 +45,17 @@ const getListCategoriesById = async (req, res) => {
 
 const createCategory = async (req, res) => {
   try {
-    if (Object.keys(req.body).length === 0) {
-      console.log("Masuk");
-      const err = new NullBody().details();
-      return res.status(400).json({
-        code: err.code,
-        message: err.message,
-      });
-    }
     const category = await Category.create({
       nama: req.body.nama,
     });
+
     return res.status(201).json({
       status: "Category created successfully",
       category,
     });
   } catch (error) {
-    return res.status(400).json({
-      status: "Failed to create category",
-      error: error,
-    });
+    const err = new NullBody();
+    return res.status(400).json(err.details());
   }
 };
 
@@ -71,31 +63,34 @@ const updateCategory = async (req, res) => {
   try {
     const exist = await Category.findByPk(req.params.id);
     if (!exist) {
-      const err = new IdNotFound(req.params.id).details();
-      return res.status(404).json({
-        code: err.code,
-        message: err.message,
-      });
+      const err = new IdNotFound(req.params.id);
+      return res.status(404).json(err.details());
     }
-    const category = await Category.update(
-      {
+
+    const sameName = await Category.findOne({
+      where: {
         nama: req.body.nama,
-      },
-      {
-        where: {
-          id: req.params.id,
+        id: {
+          [Op.ne]: req.params.id,
         },
-      }
-    );
+      },
+    });
+
+    if (sameName) {
+      const err = new UniqueColumnAlreadyExisted(req.body.nama);
+      return res.status(400).json(err.details());
+    }
+
+    const category = await exist.update({
+      nama: req.body.nama,
+    });
     return res.status(200).json({
       status: "Category updated successfully",
       category,
     });
   } catch (error) {
-    return res.status(400).json({
-      status: "Failed to update category",
-      error: error,
-    });
+    const err = new NullBody();
+    return res.status(400).json(err.details());
   }
 };
 
@@ -103,17 +98,16 @@ const deleteCategory = async (req, res) => {
   try {
     const exist = await Category.findByPk(req.params.id);
     if (!exist) {
-      const err = new IdNotFound(req.params.id).details();
-      return res.status(404).json({
-        code: err.code,
-        message: err.message,
-      });
+      const err = new IdNotFound(req.params.id);
+      return res.status(404).json(err.details());
     }
+
     await Category.destroy({
       where: {
         id: req.params.id,
       },
     });
+
     return res.status(200).json({
       status: "Category deleted successfully",
     });

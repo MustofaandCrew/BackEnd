@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const validator = require("validator").default;
 const { User } = require("../models");
+const { EmailAlreadyRegistered, InvalidEmail, WrongPassword, NullBody, EmailNotFound } = require("../error");
 
 const authorize = async (req, res, next) => {
   try {
@@ -30,21 +31,26 @@ const authorize = async (req, res, next) => {
 const handleLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    const isEmailValid = validator.isEmail(email);
+    if (!isEmailValid) {
+      const err = new InvalidEmail(email);
+      return res.status(400).json(err.details());
+    }
+
     const user = await User.findOne({
       where: { email },
     });
 
     if (!user) {
-      return res.status(401).json({
-        message: "Invalid email",
-      });
+      const err = new EmailNotFound(email);
+      return res.status(400).json(err.details());
     }
 
     const isPasswordValid = await verifyPassword(password, user.password);
     if (!isPasswordValid) {
-      return res.status(401).json({
-        message: "Invalid password",
-      });
+      const err = new WrongPassword();
+      return res.status(400).json(err.details());
     }
 
     const token = createToken(user);
@@ -52,9 +58,8 @@ const handleLogin = async (req, res) => {
       token,
     });
   } catch (error) {
-    return res.status(401).json({
-      message: error.message,
-    });
+    const err = new NullBody();
+    return res.status(400).json(err.details());
   }
 };
 
@@ -63,9 +68,8 @@ const handleRegister = async (req, res) => {
     const { nama, email, password } = req.body;
     const isEmailValid = validator.isEmail(email);
     if (!isEmailValid) {
-      return res.status(400).json({
-        message: "Invalid email",
-      });
+      const err = new InvalidEmail(email);
+      return res.status(400).json(err.details());
     }
 
     const user = await User.findOne({
@@ -73,9 +77,8 @@ const handleRegister = async (req, res) => {
     });
 
     if (user) {
-      return res.status(401).json({
-        message: "Email already exists",
-      });
+      const err = new EmailAlreadyRegistered();
+      return res.status(400).json(err.details());
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -90,9 +93,8 @@ const handleRegister = async (req, res) => {
       newUser,
     });
   } catch (error) {
-    return res.status(401).json({
-      message: error.message,
-    });
+    const err = new NullBody();
+    return res.status(400).json(err.details());
   }
 };
 
