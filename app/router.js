@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {categoryController} = require("./controller");
-const product = require("./controller/product");
+const {productController} = require("./controller");
 
 router.get("/", (req, res) => {
   res.send({
@@ -17,10 +17,10 @@ router.put('/categories/update/:id', categoryController.updateCategory);
 router.delete('/categories/delete/:id', categoryController.deleteCategory);
 
 // Product
-router.get('/products', product.getListProducts);
-router.get('/products/:id', product.getListProductsById);
-router.post('/products/add', product.createProduct);
-router.put('/products/edit/:id', product.updateProduct);
-router.delete('/products/delete/:id', product.deleteProduct);
+router.get('/products', productController.getListProducts);
+router.get('/products/:id', productController.getListProductsById);
+router.post('/products/create', productController.createProduct);
+router.put('/products/update/:id', productController.updateProduct);
+router.delete('/products/delete/:id', productController.deleteProduct);
 
 module.exports = router;
