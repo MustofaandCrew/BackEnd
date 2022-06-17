@@ -4,12 +4,12 @@ const getListCategories = async (req, res) => {
     try {
         const categories = await Category.findAll();
         return res.status(200).json({
-            message: "Categories fetched successfully",
+            status: "Categories fetched successfully",
             categories
         });
     } catch (error) {
         return res.status(400).json({
-            message: "Failed to fetch categories",
+            status: "Failed to fetch categories",
             error: error
         });
     }
@@ -23,12 +23,12 @@ const getListCategoriesById = async (req, res) => {
             }
         });
         return res.status(200).json({
-            message: "Categories By Id fetched successfully",
+            status: "Categories By Id fetched successfully",
             Category: categories
         });
     } catch (error) {
         return res.status(400).json({
-            message: "Failed to fetch categories",
+            status: "Failed to fetch categories",
             error: error
         });
     }
@@ -39,13 +39,13 @@ const createCategory = async (req, res) => {
         const category = await Category.create({
             nama: req.body.nama
         });
-        return res.status(200).json({
-            message: "Category created successfully",
+        return res.status(201).json({
+            status: "Category created successfully",
             category
         });
     } catch (error) {
         return res.status(400).json({
-            message: "Failed to create category",
+            status: "Failed to create category",
             error: error
         });
     }
@@ -61,12 +61,12 @@ const updateCategory = async (req, res) => {
             }
         });
         return res.status(200).json({
-            message: "Category updated successfully",
+            status: "Category updated successfully",
             category
         });
     } catch (error) {
         return res.status(400).json({
-            message: "Failed to update category",
+            status: "Failed to update category",
             error: error
         });
     }
@@ -80,12 +80,12 @@ const deleteCategory = async (req, res) => {
             }
         });
         return res.status(200).json({
-            message: "Category deleted successfully",
+            status: "Category deleted successfully",
             category
         });
     } catch (error) {
         return res.status(400).json({
-            message: "Failed to delete category",
+            status: "Failed to delete category",
             error: error
         });
     }
