@@ -1,0 +1,10 @@
+==================== Success ====================
+respon 200 -> S-001 = data berhasil diambil
+respon 200 -> S-002 = data berhasil diedit
+respon 200 -> S-003 = data berhasil dihapus
+respon 201 -> S-004 = data berhasil dibuat
+
+==================== Error ====================
+error 204 -> E-001 = data dengan id tersebut tidak ditemukan
+error 204 -> E-002 = body tidak ada isinya
+error 400 -> E-003 = permasalahan dalam mengambil permintaan
