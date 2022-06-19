@@ -1,52 +1,52 @@
-const { Category } = require("../models");
+const { Product } = require("../models");
 
-const getListCategories = async (req, res) => {
+const getListProducts = async (req, res) => {
   try {
-    const data = await Category.findAll();
+    const data = await Product.findAll();
     if (data.length === 0) {
       return res.status(204).json({
-        code: "Categories not found",
+        code: "Products not found",
       });
     } else if (data.length > 0) {
       return res.status(200).json({
-        code: "Categories fetched successfully",
+        code: "Products fetched successfully",
         data,
       });
     }
   } catch (error) {
     res.status(400).json({
-      status: "Failed to fetch categories",
+      status: "Failed to fetch Products",
       error: error,
     });
   }
 };
 
-const getListCategoriesById = async (req, res) => {
+const getListProductsById = async (req, res) => {
   try {
-    const data = await Category.findOne({
+    const data = await Product.findOne({
       where: {
         id: req.params.id,
       },
     });
     if (data === null) {
       return res.status(204).json({
-        code: "Categories not found",
+        code: "Products not found",
       });
     } else if (data !== null) {
       return res.status(200).json({
-        code: "Categories By Id fetched successfully",
+        code: "Products By Id fetched successfully",
         data: data,
       });
     }
   } catch (error) {
     return res.status(400).json({
-      status: "Failed to fetch categories",
+      status: "Failed to fetch Products",
       error: error,
     });
   }
 };
 
-const createCategory = async (req, res) => {
+const createProduct = async (req, res) => {
   try {
     if (
       req.body.nama === null ||
@@ -57,37 +57,41 @@ const createCategory = async (req, res) => {
         code: "No data added",
       });
     }
-    const data = await Category.create({
+    const data = await Product.create({
       nama: req.body.nama,
+      harga: req.body.harga,
+      deskripsi: req.body.deskripsi,
     });
 
     return res.status(201).json({
-      status: "Category created successfully",
+      status: "Product created successfully",
       data,
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Failed to create category",
+      status: "Failed to create Product",
       error: error,
     });
   }
 };
 
-const updateCategory = async (req, res) => {
+const updateProduct = async (req, res) => {
   try {
-    const exist = await Category.findOne({
+    const exist = await Product.findOne({
         where: {
           id: req.params.id,
         },
       });
       if (exist === null) {
         return res.status(204).json({
-          code: "Categories not found",
+          code: "Products not found",
         });
       }
-      await Category.update(
+      await Product.update(
         {
             nama: req.body.nama,
+            harga: req.body.harga,
+            deskripsi: req.body.deskripsi,
         },
         {
         where: {
@@ -95,48 +99,48 @@ const updateCategory = async (req, res) => {
         },
       });
       return res.status(200).json({
-        code : "Category updated successfully",
+        code : "Product updated successfully",
       });
     } catch (error) {
       return res.status(400).json({
-        status: "Failed to updated category",
+        status: "Failed to updated Product",
         error: error,
       });
     }
 };
 
-const deleteCategory = async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
-    const exist = await Category.findOne({
+    const exist = await Product.findOne({
       where: {
         id: req.params.id,
       },
     });
     if (exist === null) {
       return res.status(204).json({
-        code: "Categories not found",
+        code: "Products not found",
       });
     }
-    await Category.destroy({
+    await Product.destroy({
       where: {
         id: req.params.id,
       },
     });
     return res.status(200).json({
-      code: "Category deleted successfully",
+      code: "Product deleted successfully",
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Failed to delete category",
+      status: "Failed to delete Product",
       error: error,
     });
   }
 };
 
 module.exports = {
-  getListCategories,
-  getListCategoriesById,
-  createCategory,
-  updateCategory,
-  deleteCategory,
+  getListProducts,
+  getListProductsById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
 };
