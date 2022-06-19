@@ -1,0 +1,655 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Products",
+    "contact": {}
+  },
+  "host": "127.0.0.1:8000",
+  "basePath": "/",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Get All",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GetAll",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "products fetched successfully",
+                "products": []
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "57"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"39-HVYJ1cY0Fh3de6I5nIXkny4Fz/0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 15 Jun 2022 13:46:22 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/1": {
+      "get": {
+        "summary": "Get By ID",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "GetByID",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "code": "Products By Id fetched successfully",
+                "data": {
+                  "id": 2,
+                  "nama": "testtttt",
+                  "harga": 4000,
+                  "deskripsi": "testt",
+                  "createdAt": "2022-06-19T07:47:42.508Z",
+                  "updatedAt": "2022-06-19T07:56:26.858Z",
+                  "userId": null
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "205"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"cd-P3+LDuOLiAdbL2XbtztNR5x263Y\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sun, 19 Jun 2022 07:56:50 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/create": {
+      "post": {
+        "summary": "Create",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Create",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/201created"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "status": "Product created successfully",
+                "data": {
+                  "id": 2,
+                  "nama": "test123",
+                  "harga": 4000,
+                  "deskripsi": "testt",
+                  "updatedAt": "2022-06-19T07:47:42.508Z",
+                  "createdAt": "2022-06-19T07:47:42.508Z",
+                  "userId": null
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "199"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"c7-RqFZh+LpRPBTaeIrOvKmapzse48\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sun, 19 Jun 2022 07:47:42 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/update/2": {
+      "put": {
+        "summary": "Update",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Update",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8",
+          "text/html; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK2"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "code": "Product updated successfully"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "39"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"27-/o6eStw9CaX193K57AmZuJw34ho\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sun, 19 Jun 2022 07:49:35 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "text/html; charset=utf-8": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Error</title>\n    </head>\n    <body>\n        <pre>Cannot PUT /products/update</pre>\n    </body>\n</html>"
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Security-Policy": {
+                "type": "string",
+                "default": "default-src 'none'"
+              },
+              "X-Content-Type-Options": {
+                "type": "string",
+                "default": "nosniff"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "154"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sun, 19 Jun 2022 07:55:18 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/delete/2": {
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Delete",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8",
+          "text/html; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK2"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "code": "Product deleted successfully"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "39"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"27-9BL/IoIBdQqGPIzs8JHwGKDpUIc\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sun, 19 Jun 2022 07:53:03 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "text/html; charset=utf-8": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Error</title>\n    </head>\n    <body>\n        <pre>Cannot DELETE /products/delete/</pre>\n    </body>\n</html>"
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Security-Policy": {
+                "type": "string",
+                "default": "default-src 'none'"
+              },
+              "X-Content-Type-Options": {
+                "type": "string",
+                "default": "nosniff"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "158"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sun, 19 Jun 2022 07:53:28 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1d-EqFzLEQHA8/qfhVitEHZcADhB/g\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sun, 19 Jun 2022 07:53:58 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "200OK": {
+      "title": "200OK",
+      "example": {
+        "message": "products fetched successfully",
+        "products": []
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "products"
+      ]
+    },
+    "200OK1": {
+      "title": "200OK1",
+      "example": {
+        "code": "Products By Id fetched successfully",
+        "data": {
+          "id": 2,
+          "nama": "testtttt",
+          "harga": 4000,
+          "deskripsi": "testt",
+          "createdAt": "2022-06-19T07:47:42.508Z",
+          "updatedAt": "2022-06-19T07:56:26.858Z",
+          "userId": null
+        }
+      },
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "code",
+        "data"
+      ]
+    },
+    "Data": {
+      "title": "Data",
+      "example": {
+        "id": 2,
+        "nama": "testtttt",
+        "harga": 4000,
+        "deskripsi": "testt",
+        "createdAt": "2022-06-19T07:47:42.508Z",
+        "updatedAt": "2022-06-19T07:56:26.858Z",
+        "userId": null
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "harga",
+        "deskripsi",
+        "createdAt",
+        "updatedAt",
+        "userId"
+      ]
+    },
+    "CreateRequest": {
+      "title": "CreateRequest",
+      "example": {
+        "nama": "test",
+        "harga": 4000,
+        "deskripsi": "testt"
+      },
+      "type": "object",
+      "properties": {
+        "nama": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deskripsi": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nama",
+        "harga",
+        "deskripsi"
+      ]
+    },
+    "201created": {
+      "title": "201created",
+      "example": {
+        "status": "Product created successfully",
+        "data": {
+          "id": 2,
+          "nama": "test123",
+          "harga": 4000,
+          "deskripsi": "testt",
+          "updatedAt": "2022-06-19T07:47:42.508Z",
+          "createdAt": "2022-06-19T07:47:42.508Z",
+          "userId": null
+        }
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    "UpdateRequest": {
+      "title": "UpdateRequest",
+      "example": {
+        "nama": "testtttt"
+      },
+      "type": "object",
+      "properties": {
+        "nama": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nama"
+      ]
+    },
+    "200OK2": {
+      "title": "200OK2",
+      "example": {
+        "code": "Product updated successfully"
+      },
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}

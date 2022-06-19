@@ -2,12 +2,21 @@ const express = require("express");
 const router = express.Router();
 const {categoryController} = require("./controller");
 const {productController} = require("./controller");
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+
+
+
 
 router.get("/", (req, res) => {
   res.send({
     message: "Server is running",
   });
 });
+
+router.use('/api-docs', swaggerUi.serve);
+router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 //Kategori
 router.get('/categories', categoryController.getListCategories);
