@@ -1,5 +1,6 @@
 const { Category } = require("../models");
-const { Success, CreatedSusscess, UpdatedSuccess, DeleteSuccess, IdNotFound, NullBody, BadRequest } = require("../../helper");
+const { Success, CreatedSusscess, UpdatedSuccess, DeleteSuccess, IdNotFound, NullBody, BadRequest, Validation } = require("../../helper");
+const { validationResult } = require("express-validator");
 
 const getListCategories = async (req, res) => {
   try {
@@ -35,7 +36,7 @@ const getListCategoriesById = async (req, res) => {
     });
     if (data === null) {
       const idNotFound = new IdNotFound(req.params.id);
-      return res.status(204).json({
+      return res.status(404).json({
         code: idNotFound.details().code,
         message: idNotFound.details().message,
         });
@@ -68,8 +69,18 @@ const createCategory = async (req, res) => {
         message : nullBody.details().message,
       });
     }
+
+    const errors = validationResult(req)
+    const validation = new Validation(errors);
+    if (!errors.isEmpty() || req.body.nama.length <= 3 || req.body.nama.length >= 10) {
+      return res.status(400).json({
+        code : validation.details().code,
+        message : validation.details().message,
+      });
+    }
+
     const data = await Category.create({
-      nama: req.body.nama,
+      nama: req.body.nama
     });
     const createdSusscess = new CreatedSusscess(data);
     return res.status(201).json({
@@ -94,8 +105,9 @@ const updateCategory = async (req, res) => {
       });
       if (exist === null) {
         const idNotFound = new IdNotFound(req.params.id);
-        return res.status(204).json({
+        return res.status(404).json({
           code: idNotFound.details().code,
+          message: idNotFound.details().message,
         });
       }
       const data = await Category.update(
@@ -130,7 +142,7 @@ const deleteCategory = async (req, res) => {
     });
     if (exist === null) {
       const idNotFound = new IdNotFound(req.params.id);
-      return res.status(204).json({
+      return res.status(404).json({
         code: idNotFound.details().code,
         message: idNotFound.details().message,
       });

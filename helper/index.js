@@ -5,5 +5,6 @@ const DeleteSuccess = require("./DeleteSuccess");
 const IdNotFound = require("./IdNotFound");
 const NullBody = require("./NullBody");
 const BadRequest = require("./BadRequest");
+const Validation = require("./Validation");
 
-module.exports = { Success, CreatedSusscess, UpdatedSuccess, DeleteSuccess, IdNotFound, NullBody, BadRequest };
+module.exports = { Success, CreatedSusscess, UpdatedSuccess, DeleteSuccess, IdNotFound, NullBody, BadRequest, Validation };

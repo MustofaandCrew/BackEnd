@@ -7,4 +7,5 @@ respon 201 -> S-004 = data berhasil dibuat
 ==================== Error ====================
 error 204 -> E-001 = data dengan id tersebut tidak ditemukan
 error 204 -> E-002 = body tidak ada isinya
-error 400 -> E-003 = permasalahan dalam mengambil permintaan
+error 400 -> E-003 = input kurang dari 3 karakter dan lebih dari 10 karakter
+error 400 -> E-004 = permasalahan dalam mengambil permintaan
