@@ -1,42 +1,29 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const validator = require("validator").default;
 const { User } = require("../models");
-const { EmailAlreadyRegistered, InvalidEmail, WrongPassword, NullBody, EmailNotFound } = require("../error");
+const { EmailAlreadyRegistered, WrongPassword, EmailNotFound, NoTokenProvided, InvalidToken } = require("../error");
 
 const authorize = async (req, res, next) => {
   try {
     const auth = req.headers.authorization;
     if (!auth) {
-      return res.status(401).json({
-        message: "No token provided",
-      });
+      const err = new NoTokenProvided();
+      return res.status(401).json(err.details());
     }
+
     const token = auth.split(" ")[1];
     const decoded = decodeToken(token);
-    if (!decoded) {
-      return res.status(401).json({
-        message: "Invalid token",
-      });
-    }
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(401).json({
-      message: error.message,
-    });
+    const err = new InvalidToken();
+    return res.status(401).json(err.details());
   }
 };
 
 const handleLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
-
-    const isEmailValid = validator.isEmail(email);
-    if (!isEmailValid) {
-      const err = new InvalidEmail(email);
-      return res.status(400).json(err.details());
-    }
 
     const user = await User.findOne({
       where: { email },
@@ -58,19 +45,15 @@ const handleLogin = async (req, res) => {
       token,
     });
   } catch (error) {
-    const err = new NullBody();
-    return res.status(400).json(err.details());
+    return res.status(400).json({
+      message: error.message,
+    });
   }
 };
 
 const handleRegister = async (req, res) => {
   try {
     const { nama, email, password } = req.body;
-    const isEmailValid = validator.isEmail(email);
-    if (!isEmailValid) {
-      const err = new InvalidEmail(email);
-      return res.status(400).json(err.details());
-    }
 
     const user = await User.findOne({
       where: { email },
@@ -93,8 +76,9 @@ const handleRegister = async (req, res) => {
       newUser,
     });
   } catch (error) {
-    const err = new NullBody();
-    return res.status(400).json(err.details());
+    return res.status(400).json({
+      message: error.message,
+    });
   }
 };
 
@@ -102,12 +86,6 @@ const createToken = (user) => {
   return jwt.sign(
     {
       id: user.id,
-      email: user.email,
-      nama: user.nama,
-      kota: user.kota,
-      alamat: user.alamat,
-      noHp: user.noHp,
-      image: user.image,
     },
     process.env.JWT_SECRET
   );

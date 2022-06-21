@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       tanggal: DataTypes.DATE,
       harga: DataTypes.FLOAT,
+      status: DataTypes.STRING,
     },
     {
       sequelize,

@@ -32,6 +32,10 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

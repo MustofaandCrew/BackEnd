@@ -1,6 +1,6 @@
 const { Category } = require("../models");
 const { Op } = require("sequelize");
-const { IdNotFound, NullBody, UniqueColumnAlreadyExisted } = require("../error");
+const { IdNotFound, UniqueColumnAlreadyExisted } = require("../error");
 
 const getListCategories = async (req, res) => {
   try {
@@ -14,8 +14,7 @@ const getListCategories = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Failed to fetch categories",
-      error: error,
+      error: error.message,
     });
   }
 };
@@ -37,8 +36,7 @@ const getListCategoriesById = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Failed to fetch categories",
-      error: error,
+      error: error.message,
     });
   }
 };
@@ -54,8 +52,9 @@ const createCategory = async (req, res) => {
       category,
     });
   } catch (error) {
-    const err = new NullBody();
-    return res.status(400).json(err.details());
+    return res.status(400).json({
+      error: error.message,
+    });
   }
 };
 
@@ -89,8 +88,9 @@ const updateCategory = async (req, res) => {
       category,
     });
   } catch (error) {
-    const err = new NullBody();
-    return res.status(400).json(err.details());
+    return res.status(400).json({
+      error: error.message,
+    });
   }
 };
 
@@ -113,8 +113,7 @@ const deleteCategory = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Failed to delete category",
-      error: error,
+      error: error.message,
     });
   }
 };
