@@ -1,0 +1,5757 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Final Project",
+    "contact": {}
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Register",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "Register",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "nama",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400BodyTidakLengkap1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-001",
+                    "message": "Nama tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-001",
+                    "message": "Email tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-002",
+                    "message": "Email tidak valid"
+                  },
+                  {
+                    "code": "E-001",
+                    "message": "Password tidak boleh kosong"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "223"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"df-pTo8cn/bQQqbMG8lRp+hDfYMo34\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:28:40 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully registered"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "37"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"25-v5J3d5iBeDcML9FBwd6qt6nQx9k\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:36:19 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Login",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "Login",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400BodyTidakLengkap1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-002",
+                    "message": "Email tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-003",
+                    "message": "Email tidak valid"
+                  },
+                  {
+                    "code": "E-004",
+                    "message": "Password tidak boleh kosong"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "170"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"aa-gDxoPvUkFbf5yQ84NOESaNY7nPo\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:36:52 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjU1ODExNDk1fQ.D91jt8PB9WTYcmU2Mm6rC_5t_J1xCoqboxJHEudlw6k"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "127"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"7f-Eq4fgSwigwiffPOVnAwTzyTnR0M\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:38:15 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "summary": "Get List Categories",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "GetListCategories",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 17 Jun 2022 15:18:18 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK2"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Categories fetched successfully",
+                "data": [
+                  {
+                    "id": 1,
+                    "nama": "Elektronik",
+                    "createdAt": "2022-06-20T05:16:41.642Z",
+                    "updatedAt": "2022-06-20T05:16:41.642Z"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "161"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"a1-F/B+N2TPiXCQu+HHqX6aUbh3YJ8\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:43:57 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Category",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "CreateCategory",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "nama",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400BodyTidakLengkap1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-001",
+                    "message": "Nama tidak boleh kosong"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "65"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"41-e7awd9iwSMlGrqXpctcRs6AWK/Y\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:44:55 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:46:25 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/201Created"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Category created successfully",
+                "data": {
+                  "id": 3,
+                  "nama": "Pakaian Wanita",
+                  "updatedAt": "2022-06-21T11:47:48.962Z",
+                  "createdAt": "2022-06-21T11:47:48.962Z"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "161"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"a1-b1T7LRAd1aBedrjuLWHA/rxl0hk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:47:49 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "summary": "Get Category By Id",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "GetCategoryById",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404IdNotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-010",
+                    "message": "Id 3 not found"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "56"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"38-cSO8MVyXOaj4AyGF15hYkO7xRfA\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:42:27 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK3"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Category By Id fetched successfully",
+                "data": {
+                  "id": 1,
+                  "nama": "Elektronik",
+                  "createdAt": "2022-06-20T05:16:41.642Z",
+                  "updatedAt": "2022-06-20T05:16:41.642Z"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "163"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"a3-bqO8JjallN8xxzOvX94v0fwUfY8\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:44:14 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Category",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "UpdateCategory",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:48:23 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Category updated successfully"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "43"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2b-qHzEGuzfkbWWaCpwJ2RicWXJxGw\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:49:59 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404IdNotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-010",
+                    "message": "Id 5 not found"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "56"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"38-9OUkvbcwXS74v2jqHQoE8WmWvIM\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:50:23 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400BodyTidakLengkap1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-001",
+                    "message": "Nama tidak boleh kosong"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "65"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"41-e7awd9iwSMlGrqXpctcRs6AWK/Y\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:50:44 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/categories/3": {
+      "delete": {
+        "summary": "Delete Category",
+        "tags": [
+          "Category"
+        ],
+        "operationId": "DeleteCategory",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:51:12 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404NotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-010",
+                    "message": "Id 100 not found"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "58"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3a-0uUouhd/AYXW35i5KP0Kc7hJTAo\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:51:56 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Category deleted successfully"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "43"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2b-oSB9C9UJoaUkZ5Mu5gkTHkZwuV4\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:52:08 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/bid": {
+      "post": {
+        "summary": "Bid",
+        "tags": [
+          "Buyer"
+        ],
+        "operationId": "Bid",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "harga",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:01:22 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400BodyTidakLengkap1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-006",
+                    "message": "Harga tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-0016",
+                    "message": "Harga tidak boleh kosong"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "121"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"79-77IHVOX01AyzJ6w167Hw5u+eURg\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:03:48 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404IdNotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-010",
+                    "message": "Id 100 not found"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "58"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3a-0uUouhd/AYXW35i5KP0Kc7hJTAo\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:04:28 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully bid"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "30"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1e-OLb1EmAdvo1wbTobvIEwg9+h65c\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:06:55 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/notifikasiBuyer": {
+      "get": {
+        "summary": "Notifikasi User",
+        "tags": [
+          "Buyer"
+        ],
+        "operationId": "NotifikasiUser",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenInvalid1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-011",
+                    "message": "Invalid token"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "55"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"37-mhonAJFo8DM4/3a0U8kS7fWv7Mk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:09:17 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK7"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully get notifikasi",
+                "data": [
+                  {
+                    "id": 2,
+                    "tanggal": "2022-06-20T16:26:37.372Z",
+                    "harga": 4000000,
+                    "status": "Diterima",
+                    "createdAt": "2022-06-20T16:26:37.372Z",
+                    "updatedAt": "2022-06-20T16:26:59.409Z",
+                    "productId": 1,
+                    "userId": 3,
+                    "Product": {
+                      "id": 1,
+                      "nama": "Monitor",
+                      "harga": 2500000,
+                      "deskripsi": "Ini Monitor setengah mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-20T05:19:34.709Z",
+                      "updatedAt": "2022-06-21T11:18:55.660Z",
+                      "userId": 1,
+                      "ProductImages": [
+                        {
+                          "id": 8,
+                          "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+                          "createdAt": "2022-06-21T11:17:13.035Z",
+                          "updatedAt": "2022-06-21T11:17:13.035Z",
+                          "productId": 1
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": 5,
+                    "tanggal": "2022-06-21T09:32:59.383Z",
+                    "harga": 950000,
+                    "status": "Diterima",
+                    "createdAt": "2022-06-21T09:32:59.383Z",
+                    "updatedAt": "2022-06-21T09:34:55.562Z",
+                    "productId": 5,
+                    "userId": 3,
+                    "Product": {
+                      "id": 5,
+                      "nama": "TV",
+                      "harga": 1000000,
+                      "deskripsi": "Ini TV Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:32:44.622Z",
+                      "updatedAt": "2022-06-21T09:32:44.622Z",
+                      "userId": 1,
+                      "ProductImages": []
+                    }
+                  },
+                  {
+                    "id": 4,
+                    "tanggal": "2022-06-21T09:07:30.163Z",
+                    "harga": 950000,
+                    "status": "Ditolak",
+                    "createdAt": "2022-06-21T09:07:30.163Z",
+                    "updatedAt": "2022-06-21T09:36:54.017Z",
+                    "productId": 4,
+                    "userId": 3,
+                    "Product": {
+                      "id": 4,
+                      "nama": "HP",
+                      "harga": 1000000,
+                      "deskripsi": "Ini Hp Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:05:09.147Z",
+                      "updatedAt": "2022-06-21T09:05:09.147Z",
+                      "userId": 1,
+                      "ProductImages": []
+                    }
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "1424"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"590-4vprEOBnBx1asMywXrrA2aoXrHI\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:07:16 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:08:04 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/historyBuyer": {
+      "get": {
+        "summary": "History Buyer User",
+        "tags": [
+          "Buyer"
+        ],
+        "operationId": "HistoryBuyerUser",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TidakAdaToken1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:09:32 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK7"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully get histories",
+                "data": [
+                  {
+                    "id": 2,
+                    "tanggal": "2022-06-20T16:26:37.372Z",
+                    "harga": 4000000,
+                    "status": "Diterima",
+                    "createdAt": "2022-06-20T16:26:37.372Z",
+                    "updatedAt": "2022-06-20T16:26:59.409Z",
+                    "productId": 1,
+                    "userId": 3,
+                    "Product": {
+                      "id": 1,
+                      "nama": "Monitor",
+                      "harga": 2500000,
+                      "deskripsi": "Ini Monitor setengah mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-20T05:19:34.709Z",
+                      "updatedAt": "2022-06-21T11:18:55.660Z",
+                      "userId": 1,
+                      "ProductImages": [
+                        {
+                          "id": 8,
+                          "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+                          "createdAt": "2022-06-21T11:17:13.035Z",
+                          "updatedAt": "2022-06-21T11:17:13.035Z",
+                          "productId": 1
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": 5,
+                    "tanggal": "2022-06-21T09:32:59.383Z",
+                    "harga": 950000,
+                    "status": "Diterima",
+                    "createdAt": "2022-06-21T09:32:59.383Z",
+                    "updatedAt": "2022-06-21T09:34:55.562Z",
+                    "productId": 5,
+                    "userId": 3,
+                    "Product": {
+                      "id": 5,
+                      "nama": "TV",
+                      "harga": 1000000,
+                      "deskripsi": "Ini TV Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:32:44.622Z",
+                      "updatedAt": "2022-06-21T09:32:44.622Z",
+                      "userId": 1,
+                      "ProductImages": []
+                    }
+                  },
+                  {
+                    "id": 4,
+                    "tanggal": "2022-06-21T09:07:30.163Z",
+                    "harga": 950000,
+                    "status": "Ditolak",
+                    "createdAt": "2022-06-21T09:07:30.163Z",
+                    "updatedAt": "2022-06-21T09:36:54.017Z",
+                    "productId": 4,
+                    "userId": 3,
+                    "Product": {
+                      "id": 4,
+                      "nama": "HP",
+                      "harga": 1000000,
+                      "deskripsi": "Ini Hp Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:05:09.147Z",
+                      "updatedAt": "2022-06-21T09:05:09.147Z",
+                      "userId": 1,
+                      "ProductImages": []
+                    }
+                  },
+                  {
+                    "id": 6,
+                    "tanggal": "2022-06-21T12:06:55.049Z",
+                    "harga": 950000,
+                    "status": "Menunggu Konfirmasi",
+                    "createdAt": "2022-06-21T12:06:55.051Z",
+                    "updatedAt": "2022-06-21T12:06:55.051Z",
+                    "productId": 4,
+                    "userId": 3,
+                    "Product": {
+                      "id": 4,
+                      "nama": "HP",
+                      "harga": 1000000,
+                      "deskripsi": "Ini Hp Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:05:09.147Z",
+                      "updatedAt": "2022-06-21T09:05:09.147Z",
+                      "userId": 1,
+                      "ProductImages": []
+                    }
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "1817"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"719-5i5s7hHa8CJfQvF0fHW6NVq8KKc\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:08:23 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:08:34 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/notifikasiSeller": {
+      "get": {
+        "summary": "Notifikasi Seller",
+        "tags": [
+          "Seller"
+        ],
+        "operationId": "NotifikasiSeller",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenInvalid1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-011",
+                    "message": "Invalid token"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "55"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"37-mhonAJFo8DM4/3a0U8kS7fWv7Mk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:09:17 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:08:04 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK9"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully get notifikasi",
+                "data": [
+                  {
+                    "id": 6,
+                    "tanggal": "2022-06-21T12:06:55.049Z",
+                    "harga": 950000,
+                    "status": "Menunggu Konfirmasi",
+                    "createdAt": "2022-06-21T12:06:55.051Z",
+                    "updatedAt": "2022-06-21T12:06:55.051Z",
+                    "productId": 4,
+                    "userId": 3,
+                    "User": {
+                      "id": 3,
+                      "email": "fandi@gmail.com",
+                      "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+                      "nama": "Fandi",
+                      "kota": null,
+                      "alamat": null,
+                      "noHp": null,
+                      "image": null,
+                      "createdAt": "2022-06-20T16:25:58.004Z",
+                      "updatedAt": "2022-06-20T16:25:58.004Z"
+                    },
+                    "Product": {
+                      "id": 4,
+                      "nama": "HP",
+                      "harga": 1000000,
+                      "deskripsi": "Ini Hp Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:05:09.147Z",
+                      "updatedAt": "2022-06-21T09:05:09.147Z",
+                      "userId": 1
+                    }
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "685"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2ad-EvztMb0drTwXiQer5agXpwkF9s4\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:11:19 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/updateOrder/6": {
+      "put": {
+        "summary": "Update Order",
+        "tags": [
+          "Seller"
+        ],
+        "operationId": "UpdateOrder",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TidakAdaToken1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:09:32 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400BodyTidakLengkap1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-017",
+                    "message": "Status tidak boleh kosong"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "67"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"43-T7Y4Y4cYt/IfQYbelmpNaPdjEQk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:13:26 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully updated"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "34"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"22-KN8hwUZi4URapceCwFjArsrZGWc\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:16:56 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/historySeller": {
+      "get": {
+        "summary": "History Seller",
+        "tags": [
+          "Seller"
+        ],
+        "operationId": "HistorySeller",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TidakAdaToken1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:09:32 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:08:04 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK11"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully get histories",
+                "data": [
+                  {
+                    "id": 2,
+                    "tanggal": "2022-06-20T16:26:37.372Z",
+                    "harga": 4000000,
+                    "status": "Diterima",
+                    "createdAt": "2022-06-20T16:26:37.372Z",
+                    "updatedAt": "2022-06-20T16:26:59.409Z",
+                    "productId": 1,
+                    "userId": 3,
+                    "User": {
+                      "id": 3,
+                      "email": "fandi@gmail.com",
+                      "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+                      "nama": "Fandi",
+                      "kota": null,
+                      "alamat": null,
+                      "noHp": null,
+                      "image": null,
+                      "createdAt": "2022-06-20T16:25:58.004Z",
+                      "updatedAt": "2022-06-20T16:25:58.004Z"
+                    },
+                    "Product": {
+                      "id": 1,
+                      "nama": "Monitor",
+                      "harga": 2500000,
+                      "deskripsi": "Ini Monitor setengah mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-20T05:19:34.709Z",
+                      "updatedAt": "2022-06-21T11:18:55.660Z",
+                      "userId": 1,
+                      "ProductImages": [
+                        {
+                          "id": 8,
+                          "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+                          "createdAt": "2022-06-21T11:17:13.035Z",
+                          "updatedAt": "2022-06-21T11:17:13.035Z",
+                          "productId": 1
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": 1,
+                    "tanggal": "2022-06-20T16:24:26.861Z",
+                    "harga": 3500000,
+                    "status": "Ditolak",
+                    "createdAt": "2022-06-20T16:24:26.864Z",
+                    "updatedAt": "2022-06-20T16:26:59.426Z",
+                    "productId": 1,
+                    "userId": 2,
+                    "User": {
+                      "id": 2,
+                      "email": "bayu@gmail.com",
+                      "password": "$2a$10$CdFIVuN5TjKWKv2BwC5Bn.THiz84olXCPmo0p3xTpi9ryOJfcPaG2",
+                      "nama": "Bayu",
+                      "kota": "Surabaya",
+                      "alamat": "Polowijen II",
+                      "noHp": "081357950711",
+                      "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655741839/dd02dffxzw6ijgpqdjxw.jpg",
+                      "createdAt": "2022-06-20T05:20:13.713Z",
+                      "updatedAt": "2022-06-20T16:18:34.592Z"
+                    },
+                    "Product": {
+                      "id": 1,
+                      "nama": "Monitor",
+                      "harga": 2500000,
+                      "deskripsi": "Ini Monitor setengah mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-20T05:19:34.709Z",
+                      "updatedAt": "2022-06-21T11:18:55.660Z",
+                      "userId": 1,
+                      "ProductImages": [
+                        {
+                          "id": 8,
+                          "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+                          "createdAt": "2022-06-21T11:17:13.035Z",
+                          "updatedAt": "2022-06-21T11:17:13.035Z",
+                          "productId": 1
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": 5,
+                    "tanggal": "2022-06-21T09:32:59.383Z",
+                    "harga": 950000,
+                    "status": "Diterima",
+                    "createdAt": "2022-06-21T09:32:59.383Z",
+                    "updatedAt": "2022-06-21T09:34:55.562Z",
+                    "productId": 5,
+                    "userId": 3,
+                    "User": {
+                      "id": 3,
+                      "email": "fandi@gmail.com",
+                      "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+                      "nama": "Fandi",
+                      "kota": null,
+                      "alamat": null,
+                      "noHp": null,
+                      "image": null,
+                      "createdAt": "2022-06-20T16:25:58.004Z",
+                      "updatedAt": "2022-06-20T16:25:58.004Z"
+                    },
+                    "Product": {
+                      "id": 5,
+                      "nama": "TV",
+                      "harga": 1000000,
+                      "deskripsi": "Ini TV Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:32:44.622Z",
+                      "updatedAt": "2022-06-21T09:32:44.622Z",
+                      "userId": 1,
+                      "ProductImages": []
+                    }
+                  },
+                  {
+                    "id": 3,
+                    "tanggal": "2022-06-21T09:06:35.355Z",
+                    "harga": 900000,
+                    "status": "Diterima",
+                    "createdAt": "2022-06-21T09:06:35.355Z",
+                    "updatedAt": "2022-06-21T09:36:54.000Z",
+                    "productId": 4,
+                    "userId": 2,
+                    "User": {
+                      "id": 2,
+                      "email": "bayu@gmail.com",
+                      "password": "$2a$10$CdFIVuN5TjKWKv2BwC5Bn.THiz84olXCPmo0p3xTpi9ryOJfcPaG2",
+                      "nama": "Bayu",
+                      "kota": "Surabaya",
+                      "alamat": "Polowijen II",
+                      "noHp": "081357950711",
+                      "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655741839/dd02dffxzw6ijgpqdjxw.jpg",
+                      "createdAt": "2022-06-20T05:20:13.713Z",
+                      "updatedAt": "2022-06-20T16:18:34.592Z"
+                    },
+                    "Product": {
+                      "id": 4,
+                      "nama": "HP",
+                      "harga": 1000000,
+                      "deskripsi": "Ini Hp Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:05:09.147Z",
+                      "updatedAt": "2022-06-21T09:05:09.147Z",
+                      "userId": 1,
+                      "ProductImages": []
+                    }
+                  },
+                  {
+                    "id": 4,
+                    "tanggal": "2022-06-21T09:07:30.163Z",
+                    "harga": 950000,
+                    "status": "Ditolak",
+                    "createdAt": "2022-06-21T09:07:30.163Z",
+                    "updatedAt": "2022-06-21T09:36:54.017Z",
+                    "productId": 4,
+                    "userId": 3,
+                    "User": {
+                      "id": 3,
+                      "email": "fandi@gmail.com",
+                      "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+                      "nama": "Fandi",
+                      "kota": null,
+                      "alamat": null,
+                      "noHp": null,
+                      "image": null,
+                      "createdAt": "2022-06-20T16:25:58.004Z",
+                      "updatedAt": "2022-06-20T16:25:58.004Z"
+                    },
+                    "Product": {
+                      "id": 4,
+                      "nama": "HP",
+                      "harga": 1000000,
+                      "deskripsi": "Ini Hp Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:05:09.147Z",
+                      "updatedAt": "2022-06-21T09:05:09.147Z",
+                      "userId": 1,
+                      "ProductImages": []
+                    }
+                  },
+                  {
+                    "id": 6,
+                    "tanggal": "2022-06-21T12:06:55.049Z",
+                    "harga": 950000,
+                    "status": "Ditolak",
+                    "createdAt": "2022-06-21T12:06:55.051Z",
+                    "updatedAt": "2022-06-21T12:16:56.227Z",
+                    "productId": 4,
+                    "userId": 3,
+                    "User": {
+                      "id": 3,
+                      "email": "fandi@gmail.com",
+                      "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+                      "nama": "Fandi",
+                      "kota": null,
+                      "alamat": null,
+                      "noHp": null,
+                      "image": null,
+                      "createdAt": "2022-06-20T16:25:58.004Z",
+                      "updatedAt": "2022-06-20T16:25:58.004Z"
+                    },
+                    "Product": {
+                      "id": 4,
+                      "nama": "HP",
+                      "harga": 1000000,
+                      "deskripsi": "Ini Hp Mahal",
+                      "deletedAt": null,
+                      "createdAt": "2022-06-21T09:05:09.147Z",
+                      "updatedAt": "2022-06-21T09:05:09.147Z",
+                      "userId": 1,
+                      "ProductImages": []
+                    }
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "4590"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"11ee-BiPkWDCFHX34ea3VunVKfk/Q3ho\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:17:15 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/profile": {
+      "get": {
+        "summary": "Get Profile",
+        "tags": [
+          "User"
+        ],
+        "operationId": "GetProfile",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:53:00 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK12"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully get user",
+                "data": {
+                  "id": 1,
+                  "email": "rizki@gmail.com",
+                  "password": "$2a$10$Xzf/gp6qgFTbPB62LBGX3uPGRh1mr7roZGK.2D6DKxV0k5zKZqTb.",
+                  "nama": "Rizki",
+                  "kota": null,
+                  "alamat": null,
+                  "noHp": null,
+                  "image": null,
+                  "createdAt": "2022-06-20T05:15:04.691Z",
+                  "updatedAt": "2022-06-20T05:15:04.691Z"
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "295"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"127-IF6h4BJmcBU40b1QMSZ4HJfW52U\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:54:13 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "put": {
+        "summary": "Edit Profile",
+        "tags": [
+          "User"
+        ],
+        "operationId": "EditProfile",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "nama",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "kota",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "alamat",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "noHp",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "picture",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:53:00 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400BodyTidakLengkap1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-001",
+                    "message": "Nama tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-002",
+                    "message": "Email tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-003",
+                    "message": "Email tidak valid"
+                  },
+                  {
+                    "code": "E-004",
+                    "message": "Password tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-005",
+                    "message": "No HP tidak valid"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "270"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"10e-k5U16VrcWJTD3j0FReIuE7kW3wk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:55:09 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully updated"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "34"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"22-KN8hwUZi4URapceCwFjArsrZGWc\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 11:56:26 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/myProducts": {
+      "get": {
+        "summary": "Get My Products",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "GetMyProducts",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:19:51 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 17 Jun 2022 16:19:54 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK14"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully fetched",
+                "data": [
+                  {
+                    "id": 1,
+                    "nama": "HP",
+                    "harga": 1000000,
+                    "deskripsi": "Ini Hp Mahal",
+                    "createdAt": "2022-06-17T16:28:02.089Z",
+                    "updatedAt": "2022-06-17T16:28:02.089Z",
+                    "userId": 2,
+                    "Categories": [
+                      {
+                        "id": 1,
+                        "nama": "Elektronik",
+                        "createdAt": "2022-06-17T15:22:04.303Z",
+                        "updatedAt": "2022-06-17T15:22:04.303Z",
+                        "ProductCategory": {
+                          "createdAt": "2022-06-17T16:28:05.492Z",
+                          "updatedAt": "2022-06-17T16:28:05.492Z",
+                          "categoryId": 1,
+                          "productId": 1
+                        }
+                      }
+                    ],
+                    "ProductImages": [
+                      {
+                        "id": 4,
+                        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/kpvxgkn4ytbk1qfows4r.jpg",
+                        "createdAt": "2022-06-17T16:28:05.479Z",
+                        "updatedAt": "2022-06-17T16:28:05.479Z",
+                        "productId": 1
+                      },
+                      {
+                        "id": 3,
+                        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483231/mk5vchjcqizyogxwswzs.png",
+                        "createdAt": "2022-06-17T16:28:05.479Z",
+                        "updatedAt": "2022-06-17T16:28:05.479Z",
+                        "productId": 1
+                      },
+                      {
+                        "id": 2,
+                        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/arzkzuccesvckkmsuqjs.jpg",
+                        "createdAt": "2022-06-17T16:28:05.479Z",
+                        "updatedAt": "2022-06-17T16:28:05.479Z",
+                        "productId": 1
+                      },
+                      {
+                        "id": 1,
+                        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/jpsgd6dnvr3z9hvljfad.jpg",
+                        "createdAt": "2022-06-17T16:28:05.479Z",
+                        "updatedAt": "2022-06-17T16:28:05.479Z",
+                        "productId": 1
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "1291"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"50b-nxBuAZpwMYQU6Ii7su1fWWiw+5w\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 17 Jun 2022 16:28:38 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/product/1": {
+      "get": {
+        "summary": "Get Product By Id",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "GetProductById",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404IdNotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-010",
+                    "message": "Id 100 not found"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "58"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3a-0uUouhd/AYXW35i5KP0Kc7hJTAo\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:23:18 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK14"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully fetched",
+                "data": [
+                  {
+                    "id": 1,
+                    "nama": "HP",
+                    "harga": 1000000,
+                    "deskripsi": "Ini Hp Mahal",
+                    "createdAt": "2022-06-17T16:28:02.089Z",
+                    "updatedAt": "2022-06-17T16:28:02.089Z",
+                    "userId": 2,
+                    "Categories": [
+                      {
+                        "id": 1,
+                        "nama": "Elektronik",
+                        "createdAt": "2022-06-17T15:22:04.303Z",
+                        "updatedAt": "2022-06-17T15:22:04.303Z",
+                        "ProductCategory": {
+                          "createdAt": "2022-06-17T16:28:05.492Z",
+                          "updatedAt": "2022-06-17T16:28:05.492Z",
+                          "categoryId": 1,
+                          "productId": 1
+                        }
+                      }
+                    ],
+                    "ProductImages": [
+                      {
+                        "id": 4,
+                        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/kpvxgkn4ytbk1qfows4r.jpg",
+                        "createdAt": "2022-06-17T16:28:05.479Z",
+                        "updatedAt": "2022-06-17T16:28:05.479Z",
+                        "productId": 1
+                      },
+                      {
+                        "id": 3,
+                        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483231/mk5vchjcqizyogxwswzs.png",
+                        "createdAt": "2022-06-17T16:28:05.479Z",
+                        "updatedAt": "2022-06-17T16:28:05.479Z",
+                        "productId": 1
+                      },
+                      {
+                        "id": 2,
+                        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/arzkzuccesvckkmsuqjs.jpg",
+                        "createdAt": "2022-06-17T16:28:05.479Z",
+                        "updatedAt": "2022-06-17T16:28:05.479Z",
+                        "productId": 1
+                      },
+                      {
+                        "id": 1,
+                        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/jpsgd6dnvr3z9hvljfad.jpg",
+                        "createdAt": "2022-06-17T16:28:05.479Z",
+                        "updatedAt": "2022-06-17T16:28:05.479Z",
+                        "productId": 1
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "1291"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"50b-nxBuAZpwMYQU6Ii7su1fWWiw+5w\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 17 Jun 2022 16:28:38 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Delete",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "Delete",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:35:20 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404IdNotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-010",
+                    "message": "Id 2 not found"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "56"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"38-u6thVyN71qhkVykBpa1wZgE1AwE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:42:37 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully deleted"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "34"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"22-6IoHKe6F3f/OkIETcx9tUl8GbxM\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:43:11 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "put": {
+        "summary": "Edit Product",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "EditProduct",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "nama",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "harga",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "deskripsi",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:19:51 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404IdNotFound1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-010",
+                    "message": "Id 100 not found"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "58"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3a-0uUouhd/AYXW35i5KP0Kc7hJTAo\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:26:37 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400BodyTidakLengkap1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-001",
+                    "message": "Nama tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-006",
+                    "message": "Harga tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-007",
+                    "message": "Deskripsi tidak boleh kosong"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "177"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"b1-gyuHy3wsgT8khJDFYv16i+WYq/0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:33:08 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Successfully updated"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "34"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"22-KN8hwUZi4URapceCwFjArsrZGWc\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:34:40 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/products": {
+      "post": {
+        "summary": "Create Product",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "CreateProduct",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "nama",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "harga",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "deskripsi",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "idCategory",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/401TokenTidakAda1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-012",
+                    "message": "No token provided"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "59"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3b-hKHzx95sUar4zdQimqp/dajlfDE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:19:51 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400BodyTidakLengkap1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "errors": [
+                  {
+                    "code": "E-001",
+                    "message": "Nama tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-006",
+                    "message": "Harga tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-007",
+                    "message": "Deskripsi tidak boleh kosong"
+                  },
+                  {
+                    "code": "E-008",
+                    "message": "Id Category tidak boleh kosong"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "237"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"ed-4l2sHZJXQHm0X6msibzTLCm1o2g\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:25:23 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/201Created1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Product created",
+                "data": {
+                  "id": 1,
+                  "nama": "HP",
+                  "harga": 1000000,
+                  "deskripsi": "Ini Hp Mahal",
+                  "createdAt": "2022-06-17T16:28:02.089Z",
+                  "updatedAt": "2022-06-17T16:28:02.089Z",
+                  "userId": 2,
+                  "Categories": [
+                    {
+                      "id": 1,
+                      "nama": "Elektronik",
+                      "createdAt": "2022-06-17T15:22:04.303Z",
+                      "updatedAt": "2022-06-17T15:22:04.303Z",
+                      "ProductCategory": {
+                        "createdAt": "2022-06-17T16:28:05.492Z",
+                        "updatedAt": "2022-06-17T16:28:05.492Z",
+                        "categoryId": 1,
+                        "productId": 1
+                      }
+                    }
+                  ],
+                  "ProductImages": [
+                    {
+                      "id": 1,
+                      "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/jpsgd6dnvr3z9hvljfad.jpg",
+                      "createdAt": "2022-06-17T16:28:05.479Z",
+                      "updatedAt": "2022-06-17T16:28:05.479Z",
+                      "productId": 1
+                    },
+                    {
+                      "id": 2,
+                      "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/arzkzuccesvckkmsuqjs.jpg",
+                      "createdAt": "2022-06-17T16:28:05.479Z",
+                      "updatedAt": "2022-06-17T16:28:05.479Z",
+                      "productId": 1
+                    },
+                    {
+                      "id": 3,
+                      "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483231/mk5vchjcqizyogxwswzs.png",
+                      "createdAt": "2022-06-17T16:28:05.479Z",
+                      "updatedAt": "2022-06-17T16:28:05.479Z",
+                      "productId": 1
+                    },
+                    {
+                      "id": 4,
+                      "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/kpvxgkn4ytbk1qfows4r.jpg",
+                      "createdAt": "2022-06-17T16:28:05.479Z",
+                      "updatedAt": "2022-06-17T16:28:05.479Z",
+                      "productId": 1
+                    }
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "1284"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"504-2fpNTHM81HegQPS/PTZkXuU6jh4\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 17 Jun 2022 16:28:05 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "get": {
+        "summary": "Get List Products",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "GetListProducts",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 17 Jun 2022 16:19:54 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200OK16"
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "3531"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"dcb-vDVrOkYXPkA2d87Tifn7NEkbge8\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Tue, 21 Jun 2022 12:24:29 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "definitions": {
+    "Error": {
+      "title": "Error",
+      "example": {
+        "code": "E-001",
+        "message": "Nama tidak boleh kosong"
+      },
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    "400BodyTidakLengkap1": {
+      "title": "400BodyTidakLengkap1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-001",
+            "message": "Nama tidak boleh kosong"
+          },
+          {
+            "code": "E-001",
+            "message": "Email tidak boleh kosong"
+          },
+          {
+            "code": "E-002",
+            "message": "Email tidak valid"
+          },
+          {
+            "code": "E-001",
+            "message": "Password tidak boleh kosong"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "400EmailSudahTerdaftar1": {
+      "title": "400EmailSudahTerdaftar1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-008",
+            "message": "Email sudah terdaftar"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "400EmailTidakValid1": {
+      "title": "400EmailTidakValid1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-003",
+            "message": "Email tidak valid"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "200OK": {
+      "title": "200OK",
+      "example": {
+        "message": "Successfully registered"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "400EmailTidakTerdaftar1": {
+      "title": "400EmailTidakTerdaftar1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-009",
+            "message": "Email fandiii@gmail.com tidak terdaftar"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "400PasswordSalah1": {
+      "title": "400PasswordSalah1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-014",
+            "message": "Password salah"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "200OK1": {
+      "title": "200OK1",
+      "example": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjU1ODExNDk1fQ.D91jt8PB9WTYcmU2Mm6rC_5t_J1xCoqboxJHEudlw6k"
+      },
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "token"
+      ]
+    },
+    "200OK2": {
+      "title": "200OK2",
+      "example": {
+        "message": "Categories fetched successfully",
+        "data": [
+          {
+            "id": 1,
+            "nama": "Elektronik",
+            "createdAt": "2022-06-20T05:16:41.642Z",
+            "updatedAt": "2022-06-20T05:16:41.642Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Datum"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "Datum": {
+      "title": "Datum",
+      "example": {
+        "id": 1,
+        "nama": "Elektronik",
+        "createdAt": "2022-06-20T05:16:41.642Z",
+        "updatedAt": "2022-06-20T05:16:41.642Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "404IdNotFound1": {
+      "title": "404IdNotFound1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-010",
+            "message": "Id 3 not found"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "200OK3": {
+      "title": "200OK3",
+      "example": {
+        "message": "Category By Id fetched successfully",
+        "data": {
+          "id": 1,
+          "nama": "Elektronik",
+          "createdAt": "2022-06-20T05:16:41.642Z",
+          "updatedAt": "2022-06-20T05:16:41.642Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "Data": {
+      "title": "Data",
+      "example": {
+        "id": 1,
+        "nama": "Elektronik",
+        "createdAt": "2022-06-20T05:16:41.642Z",
+        "updatedAt": "2022-06-20T05:16:41.642Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "401TokenTidakAda1": {
+      "title": "401TokenTidakAda1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-012",
+            "message": "No token provided"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "401InvalidToken1": {
+      "title": "401InvalidToken1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-011",
+            "message": "Invalid token"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "201Created": {
+      "title": "201Created",
+      "example": {
+        "message": "Category created successfully",
+        "data": {
+          "id": 3,
+          "nama": "Pakaian Wanita",
+          "updatedAt": "2022-06-21T11:47:48.962Z",
+          "createdAt": "2022-06-21T11:47:48.962Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "401TokenInvalid1": {
+      "title": "401TokenInvalid1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-011",
+            "message": "Invalid token"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "404NotFound1": {
+      "title": "404NotFound1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-010",
+            "message": "Id 100 not found"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "400BidProductSendiri1": {
+      "title": "400BidProductSendiri1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-015",
+            "message": "You can't bid your own product"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "401TidakAdaToken1": {
+      "title": "401TidakAdaToken1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-012",
+            "message": "No token provided"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "200OK7": {
+      "title": "200OK7",
+      "example": {
+        "message": "Successfully get notifikasi",
+        "data": [
+          {
+            "id": 2,
+            "tanggal": "2022-06-20T16:26:37.372Z",
+            "harga": 4000000,
+            "status": "Diterima",
+            "createdAt": "2022-06-20T16:26:37.372Z",
+            "updatedAt": "2022-06-20T16:26:59.409Z",
+            "productId": 1,
+            "userId": 3,
+            "Product": {
+              "id": 1,
+              "nama": "Monitor",
+              "harga": 2500000,
+              "deskripsi": "Ini Monitor setengah mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-20T05:19:34.709Z",
+              "updatedAt": "2022-06-21T11:18:55.660Z",
+              "userId": 1,
+              "ProductImages": [
+                {
+                  "id": 8,
+                  "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+                  "createdAt": "2022-06-21T11:17:13.035Z",
+                  "updatedAt": "2022-06-21T11:17:13.035Z",
+                  "productId": 1
+                }
+              ]
+            }
+          },
+          {
+            "id": 5,
+            "tanggal": "2022-06-21T09:32:59.383Z",
+            "harga": 950000,
+            "status": "Diterima",
+            "createdAt": "2022-06-21T09:32:59.383Z",
+            "updatedAt": "2022-06-21T09:34:55.562Z",
+            "productId": 5,
+            "userId": 3,
+            "Product": {
+              "id": 5,
+              "nama": "TV",
+              "harga": 1000000,
+              "deskripsi": "Ini TV Mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-21T09:32:44.622Z",
+              "updatedAt": "2022-06-21T09:32:44.622Z",
+              "userId": 1,
+              "ProductImages": []
+            }
+          },
+          {
+            "id": 4,
+            "tanggal": "2022-06-21T09:07:30.163Z",
+            "harga": 950000,
+            "status": "Ditolak",
+            "createdAt": "2022-06-21T09:07:30.163Z",
+            "updatedAt": "2022-06-21T09:36:54.017Z",
+            "productId": 4,
+            "userId": 3,
+            "Product": {
+              "id": 4,
+              "nama": "HP",
+              "harga": 1000000,
+              "deskripsi": "Ini Hp Mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-21T09:05:09.147Z",
+              "updatedAt": "2022-06-21T09:05:09.147Z",
+              "userId": 1,
+              "ProductImages": []
+            }
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data2"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "Data2": {
+      "title": "Data2",
+      "example": {
+        "id": 2,
+        "tanggal": "2022-06-20T16:26:37.372Z",
+        "harga": 4000000,
+        "status": "Diterima",
+        "createdAt": "2022-06-20T16:26:37.372Z",
+        "updatedAt": "2022-06-20T16:26:59.409Z",
+        "productId": 1,
+        "userId": 3,
+        "Product": {
+          "id": 1,
+          "nama": "Monitor",
+          "harga": 2500000,
+          "deskripsi": "Ini Monitor setengah mahal",
+          "deletedAt": null,
+          "createdAt": "2022-06-20T05:19:34.709Z",
+          "updatedAt": "2022-06-21T11:18:55.660Z",
+          "userId": 1,
+          "ProductImages": [
+            {
+              "id": 8,
+              "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+              "createdAt": "2022-06-21T11:17:13.035Z",
+              "updatedAt": "2022-06-21T11:17:13.035Z",
+              "productId": 1
+            }
+          ]
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tanggal": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Product": {
+          "$ref": "#/definitions/Product"
+        }
+      },
+      "required": [
+        "id",
+        "tanggal",
+        "harga",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "productId",
+        "userId",
+        "Product"
+      ]
+    },
+    "Product": {
+      "title": "Product",
+      "example": {
+        "id": 1,
+        "nama": "Monitor",
+        "harga": 2500000,
+        "deskripsi": "Ini Monitor setengah mahal",
+        "deletedAt": null,
+        "createdAt": "2022-06-20T05:19:34.709Z",
+        "updatedAt": "2022-06-21T11:18:55.660Z",
+        "userId": 1,
+        "ProductImages": [
+          {
+            "id": 8,
+            "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+            "createdAt": "2022-06-21T11:17:13.035Z",
+            "updatedAt": "2022-06-21T11:17:13.035Z",
+            "productId": 1
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProductImages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductImage"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "harga",
+        "deskripsi",
+        "deletedAt",
+        "createdAt",
+        "updatedAt",
+        "userId",
+        "ProductImages"
+      ]
+    },
+    "ProductImage": {
+      "title": "ProductImage",
+      "example": {
+        "id": 8,
+        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+        "createdAt": "2022-06-21T11:17:13.035Z",
+        "updatedAt": "2022-06-21T11:17:13.035Z",
+        "productId": 1
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "image": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "200OK9": {
+      "title": "200OK9",
+      "example": {
+        "message": "Successfully get notifikasi",
+        "data": [
+          {
+            "id": 6,
+            "tanggal": "2022-06-21T12:06:55.049Z",
+            "harga": 950000,
+            "status": "Menunggu Konfirmasi",
+            "createdAt": "2022-06-21T12:06:55.051Z",
+            "updatedAt": "2022-06-21T12:06:55.051Z",
+            "productId": 4,
+            "userId": 3,
+            "User": {
+              "id": 3,
+              "email": "fandi@gmail.com",
+              "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+              "nama": "Fandi",
+              "kota": null,
+              "alamat": null,
+              "noHp": null,
+              "image": null,
+              "createdAt": "2022-06-20T16:25:58.004Z",
+              "updatedAt": "2022-06-20T16:25:58.004Z"
+            },
+            "Product": {
+              "id": 4,
+              "nama": "HP",
+              "harga": 1000000,
+              "deskripsi": "Ini Hp Mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-21T09:05:09.147Z",
+              "updatedAt": "2022-06-21T09:05:09.147Z",
+              "userId": 1
+            }
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data4"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "Data4": {
+      "title": "Data4",
+      "example": {
+        "id": 6,
+        "tanggal": "2022-06-21T12:06:55.049Z",
+        "harga": 950000,
+        "status": "Menunggu Konfirmasi",
+        "createdAt": "2022-06-21T12:06:55.051Z",
+        "updatedAt": "2022-06-21T12:06:55.051Z",
+        "productId": 4,
+        "userId": 3,
+        "User": {
+          "id": 3,
+          "email": "fandi@gmail.com",
+          "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+          "nama": "Fandi",
+          "kota": null,
+          "alamat": null,
+          "noHp": null,
+          "image": null,
+          "createdAt": "2022-06-20T16:25:58.004Z",
+          "updatedAt": "2022-06-20T16:25:58.004Z"
+        },
+        "Product": {
+          "id": 4,
+          "nama": "HP",
+          "harga": 1000000,
+          "deskripsi": "Ini Hp Mahal",
+          "deletedAt": null,
+          "createdAt": "2022-06-21T09:05:09.147Z",
+          "updatedAt": "2022-06-21T09:05:09.147Z",
+          "userId": 1
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tanggal": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "User": {
+          "$ref": "#/definitions/User"
+        },
+        "Product": {
+          "$ref": "#/definitions/Product2"
+        }
+      },
+      "required": [
+        "id",
+        "tanggal",
+        "harga",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "productId",
+        "userId",
+        "User",
+        "Product"
+      ]
+    },
+    "User": {
+      "title": "User",
+      "example": {
+        "id": 3,
+        "email": "fandi@gmail.com",
+        "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+        "nama": "Fandi",
+        "kota": null,
+        "alamat": null,
+        "noHp": null,
+        "image": null,
+        "createdAt": "2022-06-20T16:25:58.004Z",
+        "updatedAt": "2022-06-20T16:25:58.004Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "kota": {
+          "type": "string"
+        },
+        "alamat": {
+          "type": "string"
+        },
+        "noHp": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "password",
+        "nama",
+        "kota",
+        "alamat",
+        "noHp",
+        "image",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Product2": {
+      "title": "Product2",
+      "example": {
+        "id": 4,
+        "nama": "HP",
+        "harga": 1000000,
+        "deskripsi": "Ini Hp Mahal",
+        "deletedAt": null,
+        "createdAt": "2022-06-21T09:05:09.147Z",
+        "updatedAt": "2022-06-21T09:05:09.147Z",
+        "userId": 1
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "harga",
+        "deskripsi",
+        "deletedAt",
+        "createdAt",
+        "updatedAt",
+        "userId"
+      ]
+    },
+    "400IdNotFound1": {
+      "title": "400IdNotFound1",
+      "example": {
+        "errors": [
+          {
+            "code": "E-010",
+            "message": "Id 100 not found"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "required": [
+        "errors"
+      ]
+    },
+    "200OK11": {
+      "title": "200OK11",
+      "example": {
+        "message": "Successfully get histories",
+        "data": [
+          {
+            "id": 2,
+            "tanggal": "2022-06-20T16:26:37.372Z",
+            "harga": 4000000,
+            "status": "Diterima",
+            "createdAt": "2022-06-20T16:26:37.372Z",
+            "updatedAt": "2022-06-20T16:26:59.409Z",
+            "productId": 1,
+            "userId": 3,
+            "User": {
+              "id": 3,
+              "email": "fandi@gmail.com",
+              "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+              "nama": "Fandi",
+              "kota": null,
+              "alamat": null,
+              "noHp": null,
+              "image": null,
+              "createdAt": "2022-06-20T16:25:58.004Z",
+              "updatedAt": "2022-06-20T16:25:58.004Z"
+            },
+            "Product": {
+              "id": 1,
+              "nama": "Monitor",
+              "harga": 2500000,
+              "deskripsi": "Ini Monitor setengah mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-20T05:19:34.709Z",
+              "updatedAt": "2022-06-21T11:18:55.660Z",
+              "userId": 1,
+              "ProductImages": [
+                {
+                  "id": 8,
+                  "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+                  "createdAt": "2022-06-21T11:17:13.035Z",
+                  "updatedAt": "2022-06-21T11:17:13.035Z",
+                  "productId": 1
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "tanggal": "2022-06-20T16:24:26.861Z",
+            "harga": 3500000,
+            "status": "Ditolak",
+            "createdAt": "2022-06-20T16:24:26.864Z",
+            "updatedAt": "2022-06-20T16:26:59.426Z",
+            "productId": 1,
+            "userId": 2,
+            "User": {
+              "id": 2,
+              "email": "bayu@gmail.com",
+              "password": "$2a$10$CdFIVuN5TjKWKv2BwC5Bn.THiz84olXCPmo0p3xTpi9ryOJfcPaG2",
+              "nama": "Bayu",
+              "kota": "Surabaya",
+              "alamat": "Polowijen II",
+              "noHp": "081357950711",
+              "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655741839/dd02dffxzw6ijgpqdjxw.jpg",
+              "createdAt": "2022-06-20T05:20:13.713Z",
+              "updatedAt": "2022-06-20T16:18:34.592Z"
+            },
+            "Product": {
+              "id": 1,
+              "nama": "Monitor",
+              "harga": 2500000,
+              "deskripsi": "Ini Monitor setengah mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-20T05:19:34.709Z",
+              "updatedAt": "2022-06-21T11:18:55.660Z",
+              "userId": 1,
+              "ProductImages": [
+                {
+                  "id": 8,
+                  "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+                  "createdAt": "2022-06-21T11:17:13.035Z",
+                  "updatedAt": "2022-06-21T11:17:13.035Z",
+                  "productId": 1
+                }
+              ]
+            }
+          },
+          {
+            "id": 5,
+            "tanggal": "2022-06-21T09:32:59.383Z",
+            "harga": 950000,
+            "status": "Diterima",
+            "createdAt": "2022-06-21T09:32:59.383Z",
+            "updatedAt": "2022-06-21T09:34:55.562Z",
+            "productId": 5,
+            "userId": 3,
+            "User": {
+              "id": 3,
+              "email": "fandi@gmail.com",
+              "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+              "nama": "Fandi",
+              "kota": null,
+              "alamat": null,
+              "noHp": null,
+              "image": null,
+              "createdAt": "2022-06-20T16:25:58.004Z",
+              "updatedAt": "2022-06-20T16:25:58.004Z"
+            },
+            "Product": {
+              "id": 5,
+              "nama": "TV",
+              "harga": 1000000,
+              "deskripsi": "Ini TV Mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-21T09:32:44.622Z",
+              "updatedAt": "2022-06-21T09:32:44.622Z",
+              "userId": 1,
+              "ProductImages": []
+            }
+          },
+          {
+            "id": 3,
+            "tanggal": "2022-06-21T09:06:35.355Z",
+            "harga": 900000,
+            "status": "Diterima",
+            "createdAt": "2022-06-21T09:06:35.355Z",
+            "updatedAt": "2022-06-21T09:36:54.000Z",
+            "productId": 4,
+            "userId": 2,
+            "User": {
+              "id": 2,
+              "email": "bayu@gmail.com",
+              "password": "$2a$10$CdFIVuN5TjKWKv2BwC5Bn.THiz84olXCPmo0p3xTpi9ryOJfcPaG2",
+              "nama": "Bayu",
+              "kota": "Surabaya",
+              "alamat": "Polowijen II",
+              "noHp": "081357950711",
+              "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655741839/dd02dffxzw6ijgpqdjxw.jpg",
+              "createdAt": "2022-06-20T05:20:13.713Z",
+              "updatedAt": "2022-06-20T16:18:34.592Z"
+            },
+            "Product": {
+              "id": 4,
+              "nama": "HP",
+              "harga": 1000000,
+              "deskripsi": "Ini Hp Mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-21T09:05:09.147Z",
+              "updatedAt": "2022-06-21T09:05:09.147Z",
+              "userId": 1,
+              "ProductImages": []
+            }
+          },
+          {
+            "id": 4,
+            "tanggal": "2022-06-21T09:07:30.163Z",
+            "harga": 950000,
+            "status": "Ditolak",
+            "createdAt": "2022-06-21T09:07:30.163Z",
+            "updatedAt": "2022-06-21T09:36:54.017Z",
+            "productId": 4,
+            "userId": 3,
+            "User": {
+              "id": 3,
+              "email": "fandi@gmail.com",
+              "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+              "nama": "Fandi",
+              "kota": null,
+              "alamat": null,
+              "noHp": null,
+              "image": null,
+              "createdAt": "2022-06-20T16:25:58.004Z",
+              "updatedAt": "2022-06-20T16:25:58.004Z"
+            },
+            "Product": {
+              "id": 4,
+              "nama": "HP",
+              "harga": 1000000,
+              "deskripsi": "Ini Hp Mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-21T09:05:09.147Z",
+              "updatedAt": "2022-06-21T09:05:09.147Z",
+              "userId": 1,
+              "ProductImages": []
+            }
+          },
+          {
+            "id": 6,
+            "tanggal": "2022-06-21T12:06:55.049Z",
+            "harga": 950000,
+            "status": "Ditolak",
+            "createdAt": "2022-06-21T12:06:55.051Z",
+            "updatedAt": "2022-06-21T12:16:56.227Z",
+            "productId": 4,
+            "userId": 3,
+            "User": {
+              "id": 3,
+              "email": "fandi@gmail.com",
+              "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+              "nama": "Fandi",
+              "kota": null,
+              "alamat": null,
+              "noHp": null,
+              "image": null,
+              "createdAt": "2022-06-20T16:25:58.004Z",
+              "updatedAt": "2022-06-20T16:25:58.004Z"
+            },
+            "Product": {
+              "id": 4,
+              "nama": "HP",
+              "harga": 1000000,
+              "deskripsi": "Ini Hp Mahal",
+              "deletedAt": null,
+              "createdAt": "2022-06-21T09:05:09.147Z",
+              "updatedAt": "2022-06-21T09:05:09.147Z",
+              "userId": 1,
+              "ProductImages": []
+            }
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data5"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "Data5": {
+      "title": "Data5",
+      "example": {
+        "id": 2,
+        "tanggal": "2022-06-20T16:26:37.372Z",
+        "harga": 4000000,
+        "status": "Diterima",
+        "createdAt": "2022-06-20T16:26:37.372Z",
+        "updatedAt": "2022-06-20T16:26:59.409Z",
+        "productId": 1,
+        "userId": 3,
+        "User": {
+          "id": 3,
+          "email": "fandi@gmail.com",
+          "password": "$2a$10$CGm6D9VDgdbyIBPLZWQbOOzPt/2TubunKPTwGw3BXWStTxzJYyLl.",
+          "nama": "Fandi",
+          "kota": null,
+          "alamat": null,
+          "noHp": null,
+          "image": null,
+          "createdAt": "2022-06-20T16:25:58.004Z",
+          "updatedAt": "2022-06-20T16:25:58.004Z"
+        },
+        "Product": {
+          "id": 1,
+          "nama": "Monitor",
+          "harga": 2500000,
+          "deskripsi": "Ini Monitor setengah mahal",
+          "deletedAt": null,
+          "createdAt": "2022-06-20T05:19:34.709Z",
+          "updatedAt": "2022-06-21T11:18:55.660Z",
+          "userId": 1,
+          "ProductImages": [
+            {
+              "id": 8,
+              "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655810177/d2ywyjcdtjyakwb6q3ob.jpg",
+              "createdAt": "2022-06-21T11:17:13.035Z",
+              "updatedAt": "2022-06-21T11:17:13.035Z",
+              "productId": 1
+            }
+          ]
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "tanggal": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "User": {
+          "$ref": "#/definitions/User"
+        },
+        "Product": {
+          "$ref": "#/definitions/Product"
+        }
+      },
+      "required": [
+        "id",
+        "tanggal",
+        "harga",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "productId",
+        "userId",
+        "User",
+        "Product"
+      ]
+    },
+    "200OK12": {
+      "title": "200OK12",
+      "example": {
+        "message": "Successfully get user",
+        "data": {
+          "id": 1,
+          "email": "rizki@gmail.com",
+          "password": "$2a$10$Xzf/gp6qgFTbPB62LBGX3uPGRh1mr7roZGK.2D6DKxV0k5zKZqTb.",
+          "nama": "Rizki",
+          "kota": null,
+          "alamat": null,
+          "noHp": null,
+          "image": null,
+          "createdAt": "2022-06-20T05:15:04.691Z",
+          "updatedAt": "2022-06-20T05:15:04.691Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data6"
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "Data6": {
+      "title": "Data6",
+      "example": {
+        "id": 1,
+        "email": "rizki@gmail.com",
+        "password": "$2a$10$Xzf/gp6qgFTbPB62LBGX3uPGRh1mr7roZGK.2D6DKxV0k5zKZqTb.",
+        "nama": "Rizki",
+        "kota": null,
+        "alamat": null,
+        "noHp": null,
+        "image": null,
+        "createdAt": "2022-06-20T05:15:04.691Z",
+        "updatedAt": "2022-06-20T05:15:04.691Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "kota": {
+          "type": "string"
+        },
+        "alamat": {
+          "type": "string"
+        },
+        "noHp": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "password",
+        "nama",
+        "kota",
+        "alamat",
+        "noHp",
+        "image",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "200OK14": {
+      "title": "200OK14",
+      "example": {
+        "message": "Successfully fetched",
+        "data": [
+          {
+            "id": 1,
+            "nama": "HP",
+            "harga": 1000000,
+            "deskripsi": "Ini Hp Mahal",
+            "createdAt": "2022-06-17T16:28:02.089Z",
+            "updatedAt": "2022-06-17T16:28:02.089Z",
+            "userId": 2,
+            "Categories": [
+              {
+                "id": 1,
+                "nama": "Elektronik",
+                "createdAt": "2022-06-17T15:22:04.303Z",
+                "updatedAt": "2022-06-17T15:22:04.303Z",
+                "ProductCategory": {
+                  "createdAt": "2022-06-17T16:28:05.492Z",
+                  "updatedAt": "2022-06-17T16:28:05.492Z",
+                  "categoryId": 1,
+                  "productId": 1
+                }
+              }
+            ],
+            "ProductImages": [
+              {
+                "id": 4,
+                "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/kpvxgkn4ytbk1qfows4r.jpg",
+                "createdAt": "2022-06-17T16:28:05.479Z",
+                "updatedAt": "2022-06-17T16:28:05.479Z",
+                "productId": 1
+              },
+              {
+                "id": 3,
+                "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483231/mk5vchjcqizyogxwswzs.png",
+                "createdAt": "2022-06-17T16:28:05.479Z",
+                "updatedAt": "2022-06-17T16:28:05.479Z",
+                "productId": 1
+              },
+              {
+                "id": 2,
+                "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/arzkzuccesvckkmsuqjs.jpg",
+                "createdAt": "2022-06-17T16:28:05.479Z",
+                "updatedAt": "2022-06-17T16:28:05.479Z",
+                "productId": 1
+              },
+              {
+                "id": 1,
+                "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/jpsgd6dnvr3z9hvljfad.jpg",
+                "createdAt": "2022-06-17T16:28:05.479Z",
+                "updatedAt": "2022-06-17T16:28:05.479Z",
+                "productId": 1
+              }
+            ]
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data7"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "Data7": {
+      "title": "Data7",
+      "example": {
+        "id": 1,
+        "nama": "HP",
+        "harga": 1000000,
+        "deskripsi": "Ini Hp Mahal",
+        "createdAt": "2022-06-17T16:28:02.089Z",
+        "updatedAt": "2022-06-17T16:28:02.089Z",
+        "userId": 2,
+        "Categories": [
+          {
+            "id": 1,
+            "nama": "Elektronik",
+            "createdAt": "2022-06-17T15:22:04.303Z",
+            "updatedAt": "2022-06-17T15:22:04.303Z",
+            "ProductCategory": {
+              "createdAt": "2022-06-17T16:28:05.492Z",
+              "updatedAt": "2022-06-17T16:28:05.492Z",
+              "categoryId": 1,
+              "productId": 1
+            }
+          }
+        ],
+        "ProductImages": [
+          {
+            "id": 4,
+            "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/kpvxgkn4ytbk1qfows4r.jpg",
+            "createdAt": "2022-06-17T16:28:05.479Z",
+            "updatedAt": "2022-06-17T16:28:05.479Z",
+            "productId": 1
+          },
+          {
+            "id": 3,
+            "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483231/mk5vchjcqizyogxwswzs.png",
+            "createdAt": "2022-06-17T16:28:05.479Z",
+            "updatedAt": "2022-06-17T16:28:05.479Z",
+            "productId": 1
+          },
+          {
+            "id": 2,
+            "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/arzkzuccesvckkmsuqjs.jpg",
+            "createdAt": "2022-06-17T16:28:05.479Z",
+            "updatedAt": "2022-06-17T16:28:05.479Z",
+            "productId": 1
+          },
+          {
+            "id": 1,
+            "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/jpsgd6dnvr3z9hvljfad.jpg",
+            "createdAt": "2022-06-17T16:28:05.479Z",
+            "updatedAt": "2022-06-17T16:28:05.479Z",
+            "productId": 1
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Category"
+          }
+        },
+        "ProductImages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductImage4"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "harga",
+        "deskripsi",
+        "createdAt",
+        "updatedAt",
+        "userId",
+        "Categories",
+        "ProductImages"
+      ]
+    },
+    "Category": {
+      "title": "Category",
+      "example": {
+        "id": 1,
+        "nama": "Elektronik",
+        "createdAt": "2022-06-17T15:22:04.303Z",
+        "updatedAt": "2022-06-17T15:22:04.303Z",
+        "ProductCategory": {
+          "createdAt": "2022-06-17T16:28:05.492Z",
+          "updatedAt": "2022-06-17T16:28:05.492Z",
+          "categoryId": 1,
+          "productId": 1
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "ProductCategory": {
+          "$ref": "#/definitions/ProductCategory"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "createdAt",
+        "updatedAt",
+        "ProductCategory"
+      ]
+    },
+    "ProductCategory": {
+      "title": "ProductCategory",
+      "example": {
+        "createdAt": "2022-06-17T16:28:05.492Z",
+        "updatedAt": "2022-06-17T16:28:05.492Z",
+        "categoryId": 1,
+        "productId": 1
+      },
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "categoryId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "createdAt",
+        "updatedAt",
+        "categoryId",
+        "productId"
+      ]
+    },
+    "ProductImage4": {
+      "title": "ProductImage4",
+      "example": {
+        "id": 4,
+        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/kpvxgkn4ytbk1qfows4r.jpg",
+        "createdAt": "2022-06-17T16:28:05.479Z",
+        "updatedAt": "2022-06-17T16:28:05.479Z",
+        "productId": 1
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "image": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "id",
+        "image",
+        "createdAt",
+        "updatedAt",
+        "productId"
+      ]
+    },
+    "201Created1": {
+      "title": "201Created1",
+      "example": {
+        "message": "Product created",
+        "data": {
+          "id": 1,
+          "nama": "HP",
+          "harga": 1000000,
+          "deskripsi": "Ini Hp Mahal",
+          "createdAt": "2022-06-17T16:28:02.089Z",
+          "updatedAt": "2022-06-17T16:28:02.089Z",
+          "userId": 2,
+          "Categories": [
+            {
+              "id": 1,
+              "nama": "Elektronik",
+              "createdAt": "2022-06-17T15:22:04.303Z",
+              "updatedAt": "2022-06-17T15:22:04.303Z",
+              "ProductCategory": {
+                "createdAt": "2022-06-17T16:28:05.492Z",
+                "updatedAt": "2022-06-17T16:28:05.492Z",
+                "categoryId": 1,
+                "productId": 1
+              }
+            }
+          ],
+          "ProductImages": [
+            {
+              "id": 1,
+              "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/jpsgd6dnvr3z9hvljfad.jpg",
+              "createdAt": "2022-06-17T16:28:05.479Z",
+              "updatedAt": "2022-06-17T16:28:05.479Z",
+              "productId": 1
+            },
+            {
+              "id": 2,
+              "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/arzkzuccesvckkmsuqjs.jpg",
+              "createdAt": "2022-06-17T16:28:05.479Z",
+              "updatedAt": "2022-06-17T16:28:05.479Z",
+              "productId": 1
+            },
+            {
+              "id": 3,
+              "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483231/mk5vchjcqizyogxwswzs.png",
+              "createdAt": "2022-06-17T16:28:05.479Z",
+              "updatedAt": "2022-06-17T16:28:05.479Z",
+              "productId": 1
+            },
+            {
+              "id": 4,
+              "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655483230/kpvxgkn4ytbk1qfows4r.jpg",
+              "createdAt": "2022-06-17T16:28:05.479Z",
+              "updatedAt": "2022-06-17T16:28:05.479Z",
+              "productId": 1
+            }
+          ]
+        }
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Data7"
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "200OK16": {
+      "title": "200OK16",
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Data10"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "data"
+      ]
+    },
+    "Data10": {
+      "title": "Data10",
+      "example": {
+        "id": 3,
+        "nama": "Remote",
+        "harga": 40000,
+        "deskripsi": "Ini Remote Mahal",
+        "deletedAt": null,
+        "createdAt": "2022-06-20T15:11:26.714Z",
+        "updatedAt": "2022-06-20T15:11:26.714Z",
+        "userId": 2,
+        "Categories": [
+          {
+            "id": 1,
+            "nama": "Elektronik",
+            "createdAt": "2022-06-20T05:16:41.642Z",
+            "updatedAt": "2022-06-20T05:16:41.642Z",
+            "ProductCategory": {
+              "createdAt": "2022-06-20T15:11:26.793Z",
+              "updatedAt": "2022-06-20T15:11:26.793Z",
+              "categoryId": 1,
+              "productId": 3
+            }
+          }
+        ],
+        "ProductImages": [],
+        "User": {
+          "id": 2,
+          "email": "bayu@gmail.com",
+          "password": "$2a$10$CdFIVuN5TjKWKv2BwC5Bn.THiz84olXCPmo0p3xTpi9ryOJfcPaG2",
+          "nama": "Bayu",
+          "kota": "Surabaya",
+          "alamat": "Polowijen II",
+          "noHp": "081357950711",
+          "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655741839/dd02dffxzw6ijgpqdjxw.jpg",
+          "createdAt": "2022-06-20T05:20:13.713Z",
+          "updatedAt": "2022-06-20T16:18:34.592Z"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "harga": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deskripsi": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Category"
+          }
+        },
+        "ProductImages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductImage"
+          }
+        },
+        "User": {
+          "$ref": "#/definitions/User2"
+        }
+      },
+      "required": [
+        "id",
+        "nama",
+        "harga",
+        "deskripsi",
+        "deletedAt",
+        "createdAt",
+        "updatedAt",
+        "userId",
+        "Categories",
+        "ProductImages",
+        "User"
+      ]
+    },
+    "User2": {
+      "title": "User2",
+      "example": {
+        "id": 2,
+        "email": "bayu@gmail.com",
+        "password": "$2a$10$CdFIVuN5TjKWKv2BwC5Bn.THiz84olXCPmo0p3xTpi9ryOJfcPaG2",
+        "nama": "Bayu",
+        "kota": "Surabaya",
+        "alamat": "Polowijen II",
+        "noHp": "081357950711",
+        "image": "http://res.cloudinary.com/final-project-fsw-3/image/upload/v1655741839/dd02dffxzw6ijgpqdjxw.jpg",
+        "createdAt": "2022-06-20T05:20:13.713Z",
+        "updatedAt": "2022-06-20T16:18:34.592Z"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "nama": {
+          "type": "string"
+        },
+        "kota": {
+          "type": "string"
+        },
+        "alamat": {
+          "type": "string"
+        },
+        "noHp": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "password",
+        "nama",
+        "kota",
+        "alamat",
+        "noHp",
+        "image",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Authentication"
+    },
+    {
+      "name": "Category"
+    },
+    {
+      "name": "Buyer"
+    },
+    {
+      "name": "Seller"
+    },
+    {
+      "name": "User"
+    },
+    {
+      "name": "Product"
+    }
+  ]
+}

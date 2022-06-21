@@ -4,7 +4,7 @@ class EmailNotFound {
   }
   details() {
     return {
-      code: "006",
+      code: "E-009",
       message: `Email ${this.email} tidak terdaftar`,
     };
   }

@@ -7,7 +7,10 @@ const { EmailAlreadyRegistered, EmailNotFound, IdNotFound } = require("../error"
 const handleGetUser = async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id);
-    res.send(user);
+    res.send({
+      message: "Successfully get user",
+      data: user,
+    });
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -38,13 +41,17 @@ const handleUpdate = async (req, res) => {
     });
     if (sameEmail) {
       const err = new EmailAlreadyRegistered(data.email);
-      return res.status(400).json(err.details());
+      return res.status(400).json({
+        errors: [err.details()],
+      });
     }
 
     const user = await User.findByPk(id);
     if (!user) {
       const err = new IdNotFound(id);
-      return res.status(400).json(err.details());
+      return res.status(400).json({
+        errors: [err.details()],
+      });
     }
 
     const samePassword = await bcrypt.compare(data.password, user.password);
@@ -80,18 +87,27 @@ const handleBid = async (req, res) => {
     const user = await User.findByPk(id);
     if (!user) {
       const err = new EmailNotFound(email);
-      return res.status(400).json(err.details());
+      return res.status(400).json({
+        errors: [err.details()],
+      });
     }
 
     const product = await Product.findByPk(productId);
     if (!product) {
       const err = new IdNotFound(productId);
-      return res.status(400).json(err.details());
+      return res.status(404).json({
+        errors: [err.details()],
+      });
     }
 
     if (product.userId === id) {
       return res.status(400).json({
-        message: "You can't bid your own product",
+        errors: [
+          {
+            code: "E-015",
+            message: "You can't bid your own product",
+          },
+        ],
       });
     }
 
@@ -132,6 +148,11 @@ const handleNotifikasiBuyer = async (req, res) => {
       include: [
         {
           model: Product,
+          include: [
+            {
+              model: ProductImage,
+            },
+          ],
         },
       ],
     });
@@ -157,6 +178,7 @@ const handleNotifikasiSeller = async (req, res) => {
     const products = await Product.findAll({
       where: {
         userId: id,
+        deletedAt: null,
       },
       include: [
         {
@@ -218,7 +240,9 @@ const handleUpdateNotifikasi = async (req, res) => {
 
     if (!history) {
       const err = new IdNotFound(id);
-      return res.status(400).json(err.details());
+      return res.status(400).json({
+        errors: [err.details()],
+      });
     }
 
     if (status === "Diterima") {
@@ -265,6 +289,7 @@ const handleGetHistorySeller = async (req, res) => {
     const products = await Product.findAll({
       where: {
         userId: id,
+        deletedAt: null,
       },
       include: [
         {
@@ -285,6 +310,14 @@ const handleGetHistorySeller = async (req, res) => {
         include: [
           {
             model: User,
+          },
+          {
+            model: Product,
+            include: [
+              {
+                model: ProductImage,
+              },
+            ],
           },
         ],
       });
@@ -323,6 +356,11 @@ const handleGetHistoryBuyer = async (req, res) => {
       include: [
         {
           model: Product,
+          include: [
+            {
+              model: ProductImage,
+            },
+          ],
         },
       ],
     });

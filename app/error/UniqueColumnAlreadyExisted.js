@@ -4,7 +4,7 @@ class UniqueColumnAlreadyExisted {
   }
   details() {
     return {
-      code: "007",
+      code: "E-013",
       message: `${this.columnName} already exists`,
     };
   }

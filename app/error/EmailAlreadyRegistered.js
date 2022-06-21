@@ -1,7 +1,7 @@
 class EmailAlreadyRegistered {
   details() {
     return {
-      code: "004",
+      code: "E-008",
       message: `Email sudah terdaftar`,
     };
   }

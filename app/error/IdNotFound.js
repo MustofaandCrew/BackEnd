@@ -5,7 +5,7 @@ class IdNotFound {
 
   details() {
     return {
-      code: "001",
+      code: "E-010",
       message: `Id ${this.id} not found`,
     };
   }

@@ -1,7 +1,7 @@
 class WrongPassword {
   details() {
     return {
-      code: "005",
+      code: "E-014",
       message: "Password salah",
     };
   }

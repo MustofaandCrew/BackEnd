@@ -9,8 +9,8 @@ const getListCategories = async (req, res) => {
       return res.status(204).end();
     }
     return res.status(200).json({
-      status: "Categories fetched successfully",
-      categories,
+      message: "Categories fetched successfully",
+      data: categories,
     });
   } catch (error) {
     return res.status(400).json({
@@ -21,18 +21,20 @@ const getListCategories = async (req, res) => {
 
 const getListCategoriesById = async (req, res) => {
   try {
-    const categories = await Category.findOne({
+    const category = await Category.findOne({
       where: {
         id: req.params.id,
       },
     });
-    if (!categories) {
+    if (!category) {
       const err = new IdNotFound(req.params.id);
-      return res.status(404).json(err.details());
+      return res.status(404).json({
+        errors: [err.details()],
+      });
     }
     return res.status(200).json({
-      status: "Categories By Id fetched successfully",
-      Category: categories,
+      message: "Category By Id fetched successfully",
+      data: category,
     });
   } catch (error) {
     return res.status(400).json({
@@ -48,8 +50,8 @@ const createCategory = async (req, res) => {
     });
 
     return res.status(201).json({
-      status: "Category created successfully",
-      category,
+      message: "Category created successfully",
+      data: category,
     });
   } catch (error) {
     return res.status(400).json({
@@ -63,7 +65,9 @@ const updateCategory = async (req, res) => {
     const exist = await Category.findByPk(req.params.id);
     if (!exist) {
       const err = new IdNotFound(req.params.id);
-      return res.status(404).json(err.details());
+      return res.status(404).json({
+        errors: [err.details()],
+      });
     }
 
     const sameName = await Category.findOne({
@@ -77,15 +81,16 @@ const updateCategory = async (req, res) => {
 
     if (sameName) {
       const err = new UniqueColumnAlreadyExisted(req.body.nama);
-      return res.status(400).json(err.details());
+      return res.status(400).json({
+        errors: [err.details()],
+      });
     }
 
-    const category = await exist.update({
+    await exist.update({
       nama: req.body.nama,
     });
     return res.status(200).json({
-      status: "Category updated successfully",
-      category,
+      message: "Category updated successfully",
     });
   } catch (error) {
     return res.status(400).json({
@@ -99,7 +104,9 @@ const deleteCategory = async (req, res) => {
     const exist = await Category.findByPk(req.params.id);
     if (!exist) {
       const err = new IdNotFound(req.params.id);
-      return res.status(404).json(err.details());
+      return res.status(404).json({
+        errors: [err.details()],
+      });
     }
 
     await Category.destroy({
@@ -109,7 +116,7 @@ const deleteCategory = async (req, res) => {
     });
 
     return res.status(200).json({
-      status: "Category deleted successfully",
+      message: "Category deleted successfully",
     });
   } catch (error) {
     return res.status(400).json({

@@ -1,7 +1,7 @@
 class NoTokenProvided {
   details() {
     return {
-      code: "008",
+      code: "E-012",
       message: "No token provided",
     };
   }

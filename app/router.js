@@ -30,25 +30,35 @@ router.put(
 );
 
 // Buyer
-router.post("/bid", authenticationController.authorize, userController.handleBid);
+router.post("/bid", authenticationController.authorize, bodyValidation.bidValidate, validate.validate, userController.handleBid);
 router.get("/notifikasiBuyer", authenticationController.authorize, userController.handleNotifikasiBuyer);
 router.get("/historyBuyer", authenticationController.authorize, userController.handleGetHistoryBuyer);
 
 // Seller
 router.get("/notifikasiSeller", authenticationController.authorize, userController.handleNotifikasiSeller);
-router.put("/updateOrder/:id", authenticationController.authorize, userController.handleUpdateNotifikasi);
+router.put("/updateOrder/:id", authenticationController.authorize, bodyValidation.orderUpdateValidate, validate.validate, userController.handleUpdateNotifikasi);
 router.get("/historySeller", authenticationController.authorize, userController.handleGetHistorySeller);
 
 //Kategori
 router.get("/categories", categoryController.getListCategories);
 router.get("/categories/:id", categoryController.getListCategoriesById);
-router.post("/categories/", bodyValidation.namaValidate, validate.validate, categoryController.createCategory);
-router.put("/categories/:id", bodyValidation.namaValidate, validate.validate, categoryController.updateCategory);
-router.delete("/categories/:id", categoryController.deleteCategory);
+router.post("/categories/", authenticationController.authorize, bodyValidation.namaValidate, validate.validate, categoryController.createCategory);
+router.put("/categories/:id", authenticationController.authorize, bodyValidation.namaValidate, validate.validate, categoryController.updateCategory);
+router.delete("/categories/:id", authenticationController.authorize, categoryController.deleteCategory);
 
 //Product
-router.post("/products", authenticationController.authorize, multipleUpload, bodyValidation.namaValidate, bodyValidation.productValidate, validate.validate, productController.createProduct);
 router.get("/products", productController.getListProducts);
+router.get("/product/:id", productController.getProductById);
+router.post("/products", authenticationController.authorize, multipleUpload, bodyValidation.namaValidate, bodyValidation.productValidate, validate.validate, productController.createProduct);
 router.get("/myProducts", authenticationController.authorize, productController.getListProductUser);
 router.delete("/product/:id", authenticationController.authorize, productController.handleDeleteProduct);
+router.put(
+  "/product/:id",
+  authenticationController.authorize,
+  multipleUpload,
+  bodyValidation.namaValidate,
+  bodyValidation.productUpdateValidate,
+  validate.validate,
+  productController.handleUpdateProduct
+);
 module.exports = router;

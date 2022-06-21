@@ -1,7 +1,7 @@
 class InvalidToken {
   details() {
     return {
-      code: "009",
+      code: "E-011",
       message: "Invalid token",
     };
   }
