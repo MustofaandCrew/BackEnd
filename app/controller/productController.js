@@ -1,146 +1,314 @@
-const { Product } = require("../models");
-
-const getListProducts = async (req, res) => {
-  try {
-    const data = await Product.findAll();
-    if (data.length === 0) {
-      return res.status(204).json({
-        code: "Products not found",
-      });
-    } else if (data.length > 0) {
-      return res.status(200).json({
-        code: "Products fetched successfully",
-        data,
-      });
-    }
-  } catch (error) {
-    res.status(400).json({
-      status: "Failed to fetch Products",
-      error: error,
-    });
-  }
-};
-
-const getListProductsById = async (req, res) => {
-  try {
-    const data = await Product.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    if (data === null) {
-      return res.status(204).json({
-        code: "Products not found",
-      });
-    } else if (data !== null) {
-      return res.status(200).json({
-        code: "Products By Id fetched successfully",
-        data: data,
-      });
-    }
-  } catch (error) {
-    return res.status(400).json({
-      status: "Failed to fetch Products",
-      error: error,
-    });
-  }
-};
+const { User, Product, ProductImage, Category } = require("../models");
+const cloudinary = require("../../middleware/cloudinary");
+const { IdNotFound } = require("../error");
 
 const createProduct = async (req, res) => {
   try {
-    if (
-      req.body.nama === null ||
-      req.body.nama === "" ||
-      req.body.nama === undefined
-    ) {
-      return res.status(204).json({
-        code: "No data added",
+    const { id } = req.user;
+    const { nama, harga, deskripsi, idCategory } = req.body;
+    const category = await Category.findByPk(idCategory);
+    if (!category) {
+      const err = new IdNotFound(idCategory);
+      return res.status(404).json({
+        errors: [err.details()],
       });
     }
-    const data = await Product.create({
-      nama: req.body.nama,
-      harga: req.body.harga,
-      deskripsi: req.body.deskripsi,
+
+    const product = await Product.create({
+      userId: id,
+      nama,
+      harga,
+      deskripsi,
+      deletedAt: null,
+    });
+
+    if (req.files.product_images) {
+      const data = await uploadMultipleFiles(req, res);
+      const uploadedFile = await Promise.all(data);
+      const urls = uploadedFile.map((file) => {
+        return file.url;
+      });
+      urls.forEach(async (url) => {
+        await ProductImage.create({
+          productId: product.id,
+          image: url,
+        });
+      });
+    }
+
+    await product.addCategory(category);
+
+    const result = await Product.findOne({
+      where: { id: product.id },
+      include: [
+        {
+          model: Category,
+        },
+        {
+          model: ProductImage,
+        },
+      ],
     });
 
     return res.status(201).json({
-      status: "Product created successfully",
-      data,
+      message: "Product created",
+      data: result,
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Failed to create Product",
-      error: error,
+      message: error.message,
     });
   }
 };
 
-const updateProduct = async (req, res) => {
+const getProductById = async (req, res) => {
   try {
-    const exist = await Product.findOne({
-        where: {
-          id: req.params.id,
+    const id = req.params.id;
+    const product = await Product.findOne({
+      where: {
+        id,
+        deletedAt: null,
+      },
+      include: [
+        {
+          model: Category,
         },
+        {
+          model: ProductImage,
+        },
+      ],
+    });
+
+    if (!product) {
+      const err = new IdNotFound(id);
+      return res.status(404).json({
+        errors: [err.details()],
       });
-      if (exist === null) {
-        return res.status(204).json({
-          code: "Products not found",
+    }
+
+    return res.status(200).json({
+      message: "Successfully fetched",
+      data: product,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+const getListProductUser = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const products = await Product.findAll({
+      where: {
+        userId: id,
+        deletedAt: null,
+      },
+      include: [
+        {
+          model: Category,
+        },
+        {
+          model: ProductImage,
+        },
+      ],
+    });
+
+    if (products.length === 0) {
+      return res.status(204).end();
+    }
+
+    return res.status(200).json({
+      message: "Successfully fetched",
+      data: products,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+const getListProducts = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: {
+        deletedAt: null,
+      },
+      include: [
+        {
+          model: Category,
+        },
+        {
+          model: ProductImage,
+        },
+        {
+          model: User,
+        },
+      ],
+    });
+
+    if (products.length === 0) {
+      return res.status(204).end();
+    }
+
+    return res.status(200).json({
+      message: "Successfully fetched",
+      data: products,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+const handleDeleteProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const idUser = req.user.id;
+    const products = await Product.findAll({
+      where: {
+        userId: idUser,
+        deletedAt: null,
+      },
+    });
+
+    if (products.length === 0) {
+      return res.status(400).json({
+        errors: [
+          {
+            code: "E-0018",
+            message: "You don't have any product",
+          },
+        ],
+      });
+    }
+
+    const product = products.filter((product) => {
+      return product.id == id;
+    });
+
+    if (product.length === 0) {
+      const err = new IdNotFound(id);
+      return res.status(404).json({
+        errors: [err.details()],
+      });
+    }
+
+    const deletedProduct = product[0];
+
+    deletedProduct.update({
+      deletedAt: new Date(),
+    });
+
+    return res.status(200).json({
+      message: "Successfully deleted",
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+const handleUpdateProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const idUser = req.user.id;
+    const { nama, harga, deskripsi } = req.body;
+
+    const products = await Product.findAll({
+      where: {
+        userId: idUser,
+        deletedAt: null,
+      },
+      include: [
+        {
+          model: ProductImage,
+        },
+      ],
+    });
+
+    if (products.length === 0) {
+      return res.status(400).json({
+        errors: [
+          {
+            code: "E-0018",
+            message: "You don't have any product",
+          },
+        ],
+      });
+    }
+
+    const product = products.filter((product) => {
+      return product.id == id;
+    });
+
+    if (product.length === 0) {
+      const err = new IdNotFound(id);
+      return res.status(404).json({
+        errors: [err.details()],
+      });
+    }
+
+    const updatedProduct = product[0];
+
+    const productImage = await ProductImage.findAll({
+      where: {
+        productId: updatedProduct.id,
+      },
+    });
+    if (req.files.product_images) {
+      const data = await uploadMultipleFiles(req, res);
+      const uploadedFile = await Promise.all(data);
+      const urls = uploadedFile.map((file) => {
+        return file.url;
+      });
+      if (productImage.length > 0) {
+        productImage.forEach(async (image) => {
+          await image.destroy();
         });
       }
-      await Product.update(
-        {
-            nama: req.body.nama,
-            harga: req.body.harga,
-            deskripsi: req.body.deskripsi,
-        },
-        {
-        where: {
-          id: req.params.id,
-        },
-      });
-      return res.status(200).json({
-        code : "Product updated successfully",
-      });
-    } catch (error) {
-      return res.status(400).json({
-        status: "Failed to updated Product",
-        error: error,
+      urls.forEach(async (url) => {
+        await ProductImage.create({
+          productId: updatedProduct.id,
+          image: url,
+        });
       });
     }
-};
 
-const deleteProduct = async (req, res) => {
-  try {
-    const exist = await Product.findOne({
-      where: {
-        id: req.params.id,
-      },
+    await updatedProduct.update({
+      nama,
+      harga,
+      deskripsi,
     });
-    if (exist === null) {
-      return res.status(204).json({
-        code: "Products not found",
-      });
-    }
-    await Product.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
+
     return res.status(200).json({
-      code: "Product deleted successfully",
+      message: "Successfully updated",
     });
   } catch (error) {
     return res.status(400).json({
-      status: "Failed to delete Product",
-      error: error,
+      message: error.message,
     });
   }
 };
 
-module.exports = {
-  getListProducts,
-  getListProductsById,
-  createProduct,
-  updateProduct,
-  deleteProduct,
+const uploadMultipleFiles = (req, res) => {
+  const uploadedFile = req.files.product_images.map((file) => {
+    const fileBase64 = file.buffer.toString("base64");
+    const fileUpload = `data:${file.mimetype};base64,${fileBase64}`;
+
+    return cloudinary.uploader.upload(fileUpload, (err, result) => {
+      if (err) {
+        return false;
+      }
+      return result.url;
+    });
+  });
+
+  return uploadedFile;
 };
+
+module.exports = { createProduct, getProductById, getListProductUser, getListProducts, handleDeleteProduct, handleUpdateProduct };

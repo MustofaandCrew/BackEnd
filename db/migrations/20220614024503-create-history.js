@@ -28,6 +28,14 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      harga: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

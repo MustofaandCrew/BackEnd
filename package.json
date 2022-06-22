@@ -23,15 +23,18 @@
   "homepage": "https://github.com/MustofaandCrew/BackEnd#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.30.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.5-lts.1",
     "pg": "^8.7.3",
     "sequelize": "^6.20.1",
     "supertest": "^6.2.3",
-    "swagger-jsdoc": "^6.2.1",
-    "swagger-ui-express": "^4.4.0"
+    "swagger-ui-express": "^4.4.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "jest": "^28.1.1"
