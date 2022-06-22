@@ -1,6 +1,6 @@
 const express = require("express");
 const swaggerUI = require("swagger-ui-express");
-const swaggerDocument = require("../docs/docs.json");
+const swaggerDocument = require("../docs/openapi.json");
 const uploadOnMemory = require("../middleware/multer");
 const router = express.Router();
 const { authenticationController, userController, categoryController, productController } = require("./controller");
@@ -15,8 +15,10 @@ router.get("/", (req, res) => {
 });
 
 // Docs
+router.use("/api-docs/json", (req, res) => {
+  res.json(swaggerDocument);
+});
 router.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
-router.get("/api-docs/json", (req, res) => {});
 
 // Authentication
 router.post("/register", bodyValidation.namaValidate, bodyValidation.authValidate, validate.validate, authenticationController.handleRegister);
