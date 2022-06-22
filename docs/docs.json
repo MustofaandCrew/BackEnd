@@ -563,7 +563,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/categories/{id}": {
@@ -891,10 +895,12 @@
             }
           }
         },
-        "security": []
-      }
-    },
-    "/categories/3": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
       "delete": {
         "summary": "Delete Category",
         "tags": [
@@ -905,7 +911,16 @@
         "produces": [
           "application/json; charset=utf-8"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
         "responses": {
           "401": {
             "description": "Unauthorized",
@@ -1041,7 +1056,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/bid": {
@@ -1261,7 +1280,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/notifikasiBuyer": {
@@ -1463,7 +1486,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/historyBuyer": {
@@ -1686,7 +1713,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/notifikasiSeller": {
@@ -1849,10 +1880,14 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
-    "/updateOrder/6": {
+    "/updateOrder/{id}": {
       "put": {
         "summary": "Update Order",
         "tags": [
@@ -1868,13 +1903,30 @@
         ],
         "parameters": [
           {
-            "name": "status",
-            "in": "formData",
+            "name": "id",
+            "in": "path",
             "required": true,
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "description": ""
           }
         ],
+        "requestBody":{
+          "description": "Status Order",
+          "required": true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "status":{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "401": {
             "description": "Unauthorized",
@@ -2010,7 +2062,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/historySeller": {
@@ -2355,7 +2411,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/profile": {
@@ -2471,7 +2531,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       },
       "put": {
         "summary": "Edit Profile",
@@ -2689,7 +2753,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/myProducts": {
@@ -2873,7 +2941,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/product/1": {
@@ -3180,7 +3252,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       },
       "put": {
         "summary": "Edit Product",
@@ -3408,7 +3484,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/products": {
@@ -3657,7 +3737,11 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       },
       "get": {
         "summary": "Get List Products",
@@ -5753,5 +5837,14 @@
     {
       "name": "Product"
     }
-  ]
+  ],
+  "components":{
+    "securitySchemes":{
+      "bearerAuth":{
+        "type":"http",
+        "scheme":"bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
 }

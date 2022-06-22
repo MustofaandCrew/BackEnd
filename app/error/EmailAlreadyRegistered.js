@@ -2,7 +2,7 @@ class EmailAlreadyRegistered {
   details() {
     return {
       code: "E-008",
-      message: `Email sudah terdaftar`,
+      message: `Email already registered`,
     };
   }
 }

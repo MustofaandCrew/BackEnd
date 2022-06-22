@@ -1,4 +1,6 @@
 const express = require("express");
+const swaggerUI = require("swagger-ui-express");
+const swaggerDocument = require("../docs/docs.json");
 const uploadOnMemory = require("../middleware/multer");
 const router = express.Router();
 const { authenticationController, userController, categoryController, productController } = require("./controller");
@@ -11,6 +13,9 @@ router.get("/", (req, res) => {
     message: "Server is running",
   });
 });
+
+// Docs
+router.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // Authentication
 router.post("/register", bodyValidation.namaValidate, bodyValidation.authValidate, validate.validate, authenticationController.handleRegister);

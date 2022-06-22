@@ -49,7 +49,7 @@ const handleUpdate = async (req, res) => {
     const user = await User.findByPk(id);
     if (!user) {
       const err = new IdNotFound(id);
-      return res.status(400).json({
+      return res.status(404).json({
         errors: [err.details()],
       });
     }
@@ -240,7 +240,7 @@ const handleUpdateNotifikasi = async (req, res) => {
 
     if (!history) {
       const err = new IdNotFound(id);
-      return res.status(400).json({
+      return res.status(404).json({
         errors: [err.details()],
       });
     }
