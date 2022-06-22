@@ -16,6 +16,7 @@ router.get("/", (req, res) => {
 
 // Docs
 router.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+router.get("/api-docs/json", (req, res) => {});
 
 // Authentication
 router.post("/register", bodyValidation.namaValidate, bodyValidation.authValidate, validate.validate, authenticationController.handleRegister);
