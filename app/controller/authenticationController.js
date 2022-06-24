@@ -35,7 +35,7 @@ const handleLogin = async (req, res) => {
 
     if (!user) {
       const err = new EmailNotFound(email);
-      return res.status(400).json({
+      return res.status(404).json({
         errors: [err.details()],
       });
     }
@@ -43,7 +43,7 @@ const handleLogin = async (req, res) => {
     const isPasswordValid = await verifyPassword(password, user.password);
     if (!isPasswordValid) {
       const err = new WrongPassword();
-      return res.status(400).json({
+      return res.status(401).json({
         errors: [err.details()],
       });
     }
