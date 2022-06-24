@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage --detectOpenHandles",
     "start:dev": "nodemon app/index.js",
     "db:create": "sequelize db:create",
     "db:drop": "sequelize db:drop",
