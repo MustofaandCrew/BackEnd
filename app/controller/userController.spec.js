@@ -180,7 +180,6 @@ describe("userController", () => {
     });
     it("should return 200 if the user is updated with image", async () => {
       const data = fs.readFileSync("./public/60e6901a4992e.jpg");
-      console.log(data, "Ini gambar yang dibaca");
       const req = {
         user: {
           id: 6,
