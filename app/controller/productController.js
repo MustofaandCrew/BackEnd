@@ -190,7 +190,7 @@ const handleDeleteProduct = async (req, res) => {
       return res.status(400).json({
         errors: [
           {
-            code: "E-0018",
+            code: "E-018",
             message: "You don't have any product",
           },
         ],
@@ -246,7 +246,7 @@ const handleUpdateProduct = async (req, res) => {
       return res.status(400).json({
         errors: [
           {
-            code: "E-0018",
+            code: "E-018",
             message: "You don't have any product",
           },
         ],
@@ -271,6 +271,7 @@ const handleUpdateProduct = async (req, res) => {
         productId: updatedProduct.id,
       },
     });
+
     if (req.files.product_images) {
       const data = await uploadMultipleFiles(req, res);
       const uploadedFile = await Promise.all(data);
