@@ -1,6 +1,7 @@
 const { User, Product, ProductImage, Category } = require("../models");
 const cloudinary = require("../../middleware/cloudinary");
 const { IdNotFound } = require("../error");
+const { Op } = require("sequelize");
 
 const createProduct = async (req, res) => {
   try {
@@ -132,13 +133,23 @@ const getListProductUser = async (req, res) => {
 
 const getListProducts = async (req, res) => {
   try {
+    const search = req.query.search || "";
+    const category = req.query.category || "";
     const products = await Product.findAll({
       where: {
         deletedAt: null,
+        nama: {
+          [Op.iLike]: `%${search}%`,
+        },
       },
       include: [
         {
           model: Category,
+          where: {
+            nama: {
+              [Op.iLike]: `%${category}%`,
+            },
+          },
         },
         {
           model: ProductImage,
@@ -179,7 +190,7 @@ const handleDeleteProduct = async (req, res) => {
       return res.status(400).json({
         errors: [
           {
-            code: "E-0018",
+            code: "E-018",
             message: "You don't have any product",
           },
         ],
@@ -235,7 +246,7 @@ const handleUpdateProduct = async (req, res) => {
       return res.status(400).json({
         errors: [
           {
-            code: "E-0018",
+            code: "E-018",
             message: "You don't have any product",
           },
         ],
@@ -260,6 +271,7 @@ const handleUpdateProduct = async (req, res) => {
         productId: updatedProduct.id,
       },
     });
+
     if (req.files.product_images) {
       const data = await uploadMultipleFiles(req, res);
       const uploadedFile = await Promise.all(data);

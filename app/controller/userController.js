@@ -7,7 +7,7 @@ const { EmailAlreadyRegistered, EmailNotFound, IdNotFound } = require("../error"
 const handleGetUser = async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id);
-    res.send({
+    res.status(200).json({
       message: "Successfully get user",
       data: user,
     });
@@ -75,7 +75,7 @@ const handleUpdate = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      error: error.message,
+      message: error.message,
     });
   }
 };
@@ -85,12 +85,6 @@ const handleBid = async (req, res) => {
     const { id } = req.user;
     const { productId, harga } = req.body;
     const user = await User.findByPk(id);
-    if (!user) {
-      const err = new EmailNotFound(email);
-      return res.status(400).json({
-        errors: [err.details()],
-      });
-    }
 
     const product = await Product.findByPk(productId);
     if (!product) {
@@ -132,11 +126,6 @@ const handleBid = async (req, res) => {
 const handleNotifikasiBuyer = async (req, res) => {
   try {
     const { id } = req.user;
-    const user = await User.findByPk(id);
-    if (!user) {
-      const err = new EmailNotFound(email);
-      return res.status(400).json(err.details());
-    }
 
     const notifikasi = await History.findAll({
       where: {
