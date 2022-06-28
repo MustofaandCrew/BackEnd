@@ -5,6 +5,7 @@ const { IdNotFound, UniqueColumnAlreadyExisted } = require("../error");
 const getListCategories = async (req, res) => {
   try {
     const categories = await Category.findAll();
+    console.log(categories);
     if (categories.length === 0) {
       return res.status(204).end();
     }
