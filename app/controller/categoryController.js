@@ -46,6 +46,19 @@ const getListCategoriesById = async (req, res) => {
 
 const createCategory = async (req, res) => {
   try {
+    const exist = await Category.findOne({
+      where: {
+        nama: req.body.nama,
+      },
+    });
+
+    if (exist) {
+      const err = new UniqueColumnAlreadyExisted(req.body.nama);
+      return res.status(400).json({
+        errors: [err.details()],
+      });
+    }
+
     const category = await Category.create({
       nama: req.body.nama,
     });
