@@ -1,26 +1,7 @@
 const categoryController = require("./categoryController");
-// const { sequelize } = require('../models');
 const { array } = require("../../middleware/multer");
-// const { queryInterface } = sequelize;
-
 const { Category } = require("../models");
 const { Op } = require("sequelize");
-// beforeAll(async () => {
-//     await queryInterface.bulkInsert('Category', [
-//         {
-//             nama: 'Elektronik',
-//             createdAt: new Date(),
-//             updatedAt: new Date(),
-//         }
-//     ], {});
-// });
-
-// afterAll(async () => {
-//     await queryInterface.bulkDelete('Category', null, {
-//         truncate: true,
-//         restartIdentity: true,
-//     });
-// });
 beforeAll(async () => {
   await Category.create({
     id: 3,
@@ -143,6 +124,24 @@ describe("Category Controller", () => {
       expect(mockResponse.status).toHaveBeenCalledWith(400);
       expect(mockResponse.json).toHaveBeenCalledWith({
         error: expect.any(String),
+      });
+    });
+    it("should return 400 if already exist", async () => {
+      const mockRequest = {
+        body: {
+          nama: "Elektronik",
+        },
+      };
+      const mockResponse = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn().mockReturnThis(),
+      };
+
+      await categoryController.createCategory(mockRequest, mockResponse);
+
+      expect(mockResponse.status).toHaveBeenCalledWith(400);
+      expect(mockResponse.json).toHaveBeenCalledWith({
+        errors: expect.any(Array),
       });
     });
   });

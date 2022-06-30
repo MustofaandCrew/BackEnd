@@ -1,6 +1,6 @@
 const request = require("supertest");
 const app = require("../app");
-const { User, History, Product, ProductImage } = require("../app/models");
+const { History } = require("../app/models");
 
 afterAll(async () => {
   await History.destroy({
