@@ -192,6 +192,11 @@ const handleNotifikasiSeller = async (req, res) => {
           },
           {
             model: Product,
+            include: [
+              {
+                model: ProductImage,
+              },
+            ],
           },
         ],
       });
@@ -348,6 +353,9 @@ const handleGetHistoryBuyer = async (req, res) => {
           include: [
             {
               model: ProductImage,
+            },
+            {
+              model: User,
             },
           ],
         },

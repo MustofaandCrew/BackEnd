@@ -14,7 +14,6 @@ const createProduct = async (req, res) => {
         errors: [err.details()],
       });
     }
-
     const product = await Product.create({
       userId: id,
       nama,
