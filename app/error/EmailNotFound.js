@@ -5,7 +5,7 @@ class EmailNotFound {
   details() {
     return {
       code: "E-009",
-      message: `Email ${this.email} not found`,
+      message: `Email not registered`,
     };
   }
 }
