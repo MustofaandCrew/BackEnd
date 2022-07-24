@@ -7,6 +7,25 @@ const createProduct = async (req, res) => {
   try {
     const { id } = req.user;
     const { nama, harga, deskripsi, idCategory } = req.body;
+
+    const myProducts = await Product.findAll({
+      where: {
+        userId: id,
+        deletedAt: null,
+      },
+    });
+
+    if (myProducts.length >= 4) {
+      return res.status(400).json({
+        errors: [
+          {
+            code: "E-019",
+            message: "You can only create 4 products",
+          },
+        ],
+      });
+    }
+
     const category = await Category.findByPk(idCategory);
     if (!category) {
       const err = new IdNotFound(idCategory);
